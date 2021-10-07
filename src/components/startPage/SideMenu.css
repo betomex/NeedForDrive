@@ -6,9 +6,16 @@
     color: #ffffff !important;
 }
 
+.ant-menu::after, .ant-menu::before {
+    display: none;
+}
+
 .closedSideMenu {
-    background-color: red !important;
+    padding: 10px 14px;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
 }
 
@@ -17,7 +24,12 @@
 }
 
 .openedSideMenu {
-
+    padding: 10px 14px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .openedSideMenu ul {

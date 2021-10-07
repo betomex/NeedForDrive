@@ -1,4 +1,4 @@
-import {Button, Carousel, Col, Layout, Menu, Row, Space} from "antd";
+import {Button, Carousel, Col, Grid, Layout, Menu, Row, Space} from "antd";
 import {
   CloseOutlined,
   EnvironmentOutlined,
@@ -7,7 +7,7 @@ import {
   LinkedinOutlined,
   MenuOutlined
 } from "@ant-design/icons";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './StartPage.css'
 import './Slider.css'
 import './SideMenu.css'
@@ -16,9 +16,19 @@ const {Header, Content, Footer} = Layout
 
 export const StartPage = () => {
   const [collapsed, setCollapsed] = useState(true)
+  const [collapsedWidth, setCollapsedWidth] = useState("48%")
+  const pageSize = Grid.useBreakpoint()
+
+  useEffect(() => {
+    if (pageSize.xl) {
+      setCollapsedWidth("48%")
+    } else if (pageSize.lg) {
+      setCollapsedWidth("30%")
+    }
+  }, [pageSize])
 
   return <Layout>
-    <Layout.Sider collapsed={collapsed} collapsedWidth={"600px"} width={"100%"} style={{
+    <Layout.Sider collapsed={collapsed} collapsedWidth={"60px"} width={"100%"} style={{
       position: "absolute", top: 0, left: 0, zIndex: 20, height: "100%"
     }}>
       <Menu theme="dark" className={collapsed ? "closedSideMenu" : "openedSideMenu"}>
@@ -52,13 +62,13 @@ export const StartPage = () => {
 
     <Layout className="site-layout">
       <Header className="mainPageHeader">
-        <Row align="middle">
-          <Col offset={1} span={10} lg={{span: 15}}>
+        <Row align={"middle"}>
+          <Col offset={2} span={8} xs={{span: 24}} sm={{span: 8}} md={{span: 8}} lg={{span: 13}} xl={{span: 8}}>
             <p className={"mainPageCompany"}>Need For Drive</p>
           </Col>
-          <Col offset={4} span={10} lg={{span: 4}}>
+          <Col xs={{offset: 2}} md={{offset: 9}} lg={{offset: 5}} xl={{offset: 10}}>
             <div className={"cityContent"}>
-              <EnvironmentOutlined/>
+              <EnvironmentOutlined className={"locationIcon"}/>
               <p className={"cityText"}>Ульяновск</p>
             </div>
           </Col>
@@ -74,17 +84,17 @@ export const StartPage = () => {
       </Content>
       <Footer>
         <Row>
-          <Col offset={1} span={6}>
+          <Col offset={2} xs={{}} sm={{}} md={{span: 8}} lg={{span: 11}} xl={{span: 8}}>
             © 2016-2019 «Need for drive»
           </Col>
-          <Col span={6} offset={11}>
+          <Col xs={{offset: 2}} sm={{}} md={{offset: 9}} lg={{offset: 6}} xl={{offset: 9}}>
             8 (495) 234-22-44
           </Col>
         </Row>
       </Footer>
     </Layout>
 
-    <Layout.Sider collapsed collapsedWidth={"47.5%"}>
+    {pageSize.lg && <Layout.Sider collapsed collapsedWidth={collapsedWidth}>
       <Carousel autoplay>
         <Row>
           <div className={"slide slide1"}>
@@ -127,7 +137,6 @@ export const StartPage = () => {
           </div>
         </Row>
       </Carousel>
-    </Layout.Sider>
-
+    </Layout.Sider>}
   </Layout>
 }
