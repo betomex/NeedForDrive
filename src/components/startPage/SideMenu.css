@@ -1,8 +1,47 @@
-.sideMenu {
-    padding: 10px;
-    height: 100%;
+.ant-menu-item-selected {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.ant-menu-item {
+    color: #ffffff !important;
+}
+
+.closedSideMenu {
+    background-color: red !important;
     display: flex;
-    justify-content: center;
-    align-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.closedSideMenu button {
+    border: none;
+}
+
+.openedSideMenu {
+
+}
+
+.openedSideMenu ul {
+    padding-left: 100px;
+}
+
+.menuItem {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 37px;
+    margin-left: 22px;
+}
+
+.menuItem:hover {
+    color: #0EC261 !important;
+}
+
+.socialItems {
+    margin: 0 25%;
+}
+
+.langChanger {
+    background-color: #0EC261;
+    border: none;
+    color: white;
 }

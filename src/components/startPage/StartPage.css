@@ -1,0 +1,88 @@
+.site-layout {
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainPageHeader {
+    background-color: white;
+    padding-top: 20px;
+}
+
+.mainPageCompany {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: #0EC261;
+}
+
+.cityContent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.cityText {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #999999;
+    padding-left: 5px;
+}
+
+.mainPageCompanyTitleOne {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 66px;
+    color: #121212;
+}
+
+.mainPageCompanyTitleTwo {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 66px;
+    color: #0EC261;
+}
+
+.mainPageCompanySlogan {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 30px;
+    color: #999999;
+}
+
+.defaultButton {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    height: 48px;
+    border: none;
+    color: white;
+}
+
+.mainPageToBookButton {
+    width: 250px;
+    border-radius: 8px;
+    background-blend-mode: darken;
+    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+}
+
+.defaultButton:hover {
+    filter: brightness(90%);
+}
+
+.defaultButton:active {
+    filter: brightness(80%);
+}
