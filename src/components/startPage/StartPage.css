@@ -20,7 +20,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
-    line-height: 30px;
+    line-height: 100%;
     color: #0EC261;
     margin: 0;
 }
@@ -54,7 +54,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 70px;
-    line-height: 66px;
+    line-height: 100%;
     color: #0EC261;
 }
 
@@ -94,4 +94,26 @@
 
 .defaultButton:active {
     filter: brightness(80%);
+}
+
+@media (max-width: 320px) {
+    .mainPageFooter {
+        background-color: #151B1F !important;
+        color: white;
+    }
+    .phone {
+        color: #0EC261;
+    }
+    .mainPageCompanyTitleOne {
+        font-size: 32px;
+    }
+    .mainPageCompanyTitleTwo {
+        font-size: 32px;
+    }
+    .mainPageCompanySlogan {
+        font-size: 18px;
+    }
+    .mainPageContent {
+        width: 80%;
+    }
 }
