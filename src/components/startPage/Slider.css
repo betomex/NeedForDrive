@@ -1,3 +1,7 @@
+.sliderSider {
+    position: relative
+}
+
 .slide {
     display: inline-flex;
     justify-content: center;
@@ -8,17 +12,20 @@
 }
 
 .slide1 {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/slider1.svg") ;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/slider1.svg");
     background-size: cover;
 }
+
 .slide2 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/slider2.svg") no-repeat;
     background-size: cover;
 }
+
 .slide3 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/slider3.svg") no-repeat;
     background-size: cover;
 }
+
 .slide4 {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/slider4.svg") no-repeat;
     background-size: cover;
@@ -44,12 +51,12 @@
     color: #EEEEEE;
 }
 
-.sliderSwitch {
+.sliderSider .sliderSwitch {
     margin: 0;
     padding: 0;
     position: absolute;
-    background-color: rgba(14, 194, 97, 0) !important;
-    color: white !important;
+    background-color: rgba(14, 194, 97, 0);
+    color: white;
     font-size: 100px;
     font-weight: lighter;
     height: 100%;
@@ -68,17 +75,18 @@
 }
 
 .sliderSwitch:hover {
-    background-color: rgba(14, 194, 97, 0.2) !important;
+    background-color: rgba(14, 194, 97, 0.2);
 }
 
 .sliderSwitch:active {
-    background-color: rgba(14, 194, 97, 0.3) !important;
+    background-color: rgba(14, 194, 97, 0.3);
 }
 
 @media (max-width: 1024px) {
     .sliderTitle {
         font-size: 32px;
     }
+
     .sliderText {
         font-size: 22px;
     }
@@ -92,12 +100,15 @@
 .buttonGreenGradient {
     background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
 }
+
 .buttonBlueGradient {
     background: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
 }
+
 .buttonRedGradient {
     background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
 }
+
 .buttonPurpleGradient {
     background: linear-gradient(90deg, #281349 0%, #720C7B 100%);
 }

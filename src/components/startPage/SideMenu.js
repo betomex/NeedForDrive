@@ -15,13 +15,24 @@ export const SideMenu = () => {
     }
   }, [pageSize])
 
-  return <Layout.Sider collapsed={isCollapsed} collapsedWidth={"60px"} width={"100%"} className={"sideMenu"}>
-    <Menu theme="dark" className={isCollapsed ? "closedSideMenu" : "openedSideMenu"}>
-      <Button icon={isCollapsed ? <MenuOutlined/> : <CloseOutlined/>} onClick={() => {
-        setIsCollapsed(!isCollapsed)
-      }}/>
-      {!isCollapsed
-      && <Menu.ItemGroup>
+  return <Layout.Sider
+    collapsed={isCollapsed}
+    collapsedWidth={"60px"}
+    width={"100%"}
+    className={"sideMenu"}
+  >
+    <Menu
+      theme="dark"
+      className={isCollapsed ? "closedSideMenu" : "openedSideMenu"}
+    >
+      <Button
+        icon={isCollapsed ? <MenuOutlined/> : <CloseOutlined/>}
+        onClick={() => {
+          setIsCollapsed(!isCollapsed)
+        }}
+      />
+      {!isCollapsed &&
+      <Menu.ItemGroup>
         <Menu.Item key="1" className={"menuItem"}>
           Парковка
         </Menu.Item>
@@ -34,14 +45,19 @@ export const SideMenu = () => {
         <Menu.Item key="4" className={"menuItem"}>
           Обслуживание
         </Menu.Item>
-        <Space style={{marginTop: '30px'}}>
+        <Space className={"socialGroup"}>
           <FacebookOutlined className={"menuItem"}/>
           <LinkedinOutlined className={"menuItem"}/>
           <InstagramOutlined className={"menuItem"}/>
         </Space>
       </Menu.ItemGroup>
       }
-      {(isLangChangerVisible || !isCollapsed) && <Button shape={"circle"} className={"langChanger"}>Eng</Button>}
+      {(isLangChangerVisible || !isCollapsed) &&
+      <Button
+        shape={"circle"}
+        className={"langChanger"}
+      >Eng</Button>
+      }
     </Menu>
   </Layout.Sider>
 }

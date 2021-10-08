@@ -12,11 +12,23 @@ export const StartPage = () => {
     <SideMenu/>
     <Layout className="site-layout">
       <Header className="mainPageHeader">
-        <Row align={"middle"}>
-          <Col xs={{offset: 4, span: 24}} md={{offset: 2, span: 8}} lg={{span: 10}} xl={{span: 10}}>
+        <Row
+          align={"middle"}
+        >
+          <Col
+            xs={{offset: 4, span: 24}}
+            md={{offset: 2, span: 8}}
+            lg={{span: 10}}
+            xl={{span: 10}}
+          >
             <div className={"mainPageCompany"}>Need For Drive</div>
           </Col>
-          <Col xs={{offset: 16, span: 12}} md={{offset: 10, span: 4}} lg={{offset: 8}} xl={{offset: 8}}>
+          <Col
+            xs={{offset: 16, span: 12}}
+            md={{offset: 10, span: 4}}
+            lg={{offset: 8}}
+            xl={{offset: 8}}
+          >
             <div className={"cityContent"}>
               <EnvironmentOutlined className={"locationIcon"}/>
               <div className={"cityText"}>Ульяновск</div>
@@ -34,10 +46,20 @@ export const StartPage = () => {
       </Content>
       <Footer className={"mainPageFooter"}>
         <Row>
-          <Col xs={{offset: 6, span: 22}} md={{offset: 2, span: 8}} lg={{span: 11}} xl={{span: 8}}>
+          <Col
+            xs={{offset: 6, span: 22}}
+            md={{offset: 2, span: 8}}
+            lg={{span: 11}}
+            xl={{span: 8}}
+          >
             <div>© 2016-2019 «Need for drive»</div>
           </Col>
-          <Col xs={{offset: 14, span: 14}} md={{offset: 9, span: 5}} lg={{offset: 6}} xl={{offset: 9}}>
+          <Col
+            xs={{offset: 14, span: 14}}
+            md={{offset: 9, span: 5}}
+            lg={{offset: 6}}
+            xl={{offset: 9}}
+          >
             <div className={"phone"}>8 (495) 234-22-44</div>
           </Col>
         </Row>

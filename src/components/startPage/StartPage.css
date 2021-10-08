@@ -96,9 +96,9 @@
     filter: brightness(80%);
 }
 
-@media (max-width: 320px) {
+@media (max-width: 767px) {
     .mainPageFooter {
-        background-color: #151B1F !important;
+        background-color: #151B1F;
         color: white;
     }
     .phone {

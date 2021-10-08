@@ -5,9 +5,13 @@ import {Route, Switch} from "react-router-dom";
 
 const App = () => {
   return <Switch>
-    <Route exact path="/NeedForDrive" render={() =>
-      <StartPage/>
-    }/>
+    <Route
+      exact
+      path="/NeedForDrive"
+      render={() =>
+        <StartPage/>
+      }
+    />
   </Switch>
 }
 
