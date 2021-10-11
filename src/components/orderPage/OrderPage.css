@@ -1,0 +1,62 @@
+.orderPageStepper {
+    background-color: white;
+    padding: 10px 155px 10px 200px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.orderPageContent {
+    background-color: white;
+    padding-left: 200px;
+    padding-top: 20px;
+    min-height: 87.8vh;
+}
+
+.locationGroup {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.locationItem {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.orderPageSider {
+    background-color: white;
+    border-left: 1px solid #EEEEEE;
+}
+
+.cheque {
+    padding: 20px 0 0 20px;
+    width: 77%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chequeTitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.chequeDots {
+    flex-grow: 1;
+    border-bottom: 1px dotted #999999;
+}
+
+.chequeValue {
+    color: #999999;
+    width: 40%;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.orderPageButton {
+    border-radius: 8px;
+    background-blend-mode: darken;
+    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+}
