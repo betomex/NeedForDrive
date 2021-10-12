@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/NeedForDrive/static/css/main.48577ee7.chunk.css",
-    "main.js": "/NeedForDrive/static/js/main.0826fa74.chunk.js",
-    "main.js.map": "/NeedForDrive/static/js/main.0826fa74.chunk.js.map",
-    "runtime-main.js": "/NeedForDrive/static/js/runtime-main.6bd03003.js",
-    "runtime-main.js.map": "/NeedForDrive/static/js/runtime-main.6bd03003.js.map",
+    "main.css": "/NeedForDrive/static/css/main.1cfd3d49.chunk.css",
+    "main.js": "/NeedForDrive/static/js/main.7620c093.chunk.js",
+    "main.js.map": "/NeedForDrive/static/js/main.7620c093.chunk.js.map",
+    "runtime-main.js": "/NeedForDrive/static/js/runtime-main.9280252c.js",
+    "runtime-main.js.map": "/NeedForDrive/static/js/runtime-main.9280252c.js.map",
     "static/css/2.786ae0dd.chunk.css": "/NeedForDrive/static/css/2.786ae0dd.chunk.css",
-    "static/js/2.8ab34be0.chunk.js": "/NeedForDrive/static/js/2.8ab34be0.chunk.js",
-    "static/js/2.8ab34be0.chunk.js.map": "/NeedForDrive/static/js/2.8ab34be0.chunk.js.map",
-    "static/js/3.190dd6a8.chunk.js": "/NeedForDrive/static/js/3.190dd6a8.chunk.js",
-    "static/js/3.190dd6a8.chunk.js.map": "/NeedForDrive/static/js/3.190dd6a8.chunk.js.map",
+    "static/js/2.44fef770.chunk.js": "/NeedForDrive/static/js/2.44fef770.chunk.js",
+    "static/js/2.44fef770.chunk.js.map": "/NeedForDrive/static/js/2.44fef770.chunk.js.map",
+    "static/js/3.8098ee42.chunk.js": "/NeedForDrive/static/js/3.8098ee42.chunk.js",
+    "static/js/3.8098ee42.chunk.js.map": "/NeedForDrive/static/js/3.8098ee42.chunk.js.map",
     "index.html": "/NeedForDrive/index.html",
     "static/css/2.786ae0dd.chunk.css.map": "/NeedForDrive/static/css/2.786ae0dd.chunk.css.map",
-    "static/css/main.48577ee7.chunk.css.map": "/NeedForDrive/static/css/main.48577ee7.chunk.css.map",
-    "static/js/2.8ab34be0.chunk.js.LICENSE.txt": "/NeedForDrive/static/js/2.8ab34be0.chunk.js.LICENSE.txt",
+    "static/css/main.1cfd3d49.chunk.css.map": "/NeedForDrive/static/css/main.1cfd3d49.chunk.css.map",
+    "static/js/2.44fef770.chunk.js.LICENSE.txt": "/NeedForDrive/static/js/2.44fef770.chunk.js.LICENSE.txt",
     "static/media/index.css": "/NeedForDrive/static/media/Roboto-Thin.1711b41f.ttf",
     "static/media/Slider.css": "/NeedForDrive/static/media/slider4.9be33387.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.6bd03003.js",
+    "static/js/runtime-main.9280252c.js",
     "static/css/2.786ae0dd.chunk.css",
-    "static/js/2.8ab34be0.chunk.js",
-    "static/css/main.48577ee7.chunk.css",
-    "static/js/main.0826fa74.chunk.js"
+    "static/js/2.44fef770.chunk.js",
+    "static/css/main.1cfd3d49.chunk.css",
+    "static/js/main.7620c093.chunk.js"
   ]
 }
