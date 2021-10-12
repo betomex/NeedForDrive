@@ -60,3 +60,8 @@
     background-blend-mode: darken;
     background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
 }
+
+.map {
+    width: 90%;
+    height: 60vh;
+}

@@ -1,12 +1,33 @@
-import {Input, Layout, Row, Space, Steps} from 'antd';
+import {AutoComplete, Layout, Row, Space, Steps} from 'antd';
 import {Header} from "../common/Header";
 import {SideMenu} from "../common/SideMenu";
 import './OrderPage.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {Map, Placemark, YMaps} from "react-yandex-maps";
+import {getLocations, getPoints} from "../../redux/locationReducer";
 
 export const OrderPage = () => {
   const [currentStep, setCurrentStep] = useState(0)
+  const [cityValue, setCityValue] = useState("")
+  const [pointValue, setPointValue] = useState("")
+  const [pointOptions, setPointOptions] = useState([])
+
+  const locations = useSelector(state => state.orderPageLocation.locations)
+  const points = useSelector(state => state.orderPageLocation.points)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getLocations())
+    dispatch(getPoints())
+  }, [])
+
+  useEffect(() => {
+    let options = points.filter(p => p.cityId?.name === cityValue).map(p => ({"value": p.address}))
+    setPointOptions(options)
+  }, [cityValue])
+
+  const locationOptions = locations.map(l => ({"value": l.name}))
 
   return <Layout>
     <SideMenu/>
@@ -26,19 +47,36 @@ export const OrderPage = () => {
               <div className={"locationItem"}>
                 <Space>
                   Город
-                  <Input allowClear placeholder={"Начните вводить город"} style={{width: 300}}/>
+                  <AutoComplete style={{width: 300}} allowClear options={locationOptions} value={cityValue}
+                                onChange={(e) => {
+                                  setCityValue(e)
+                                }}
+                                placeholder="Начните вводить город"
+                                filterOption={(inputValue, option) =>
+                                  option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                                }
+                  />
                 </Space>
               </div>
               <div className={"locationItem"}>
                 <Space>
                   Пункт выдачи
-                  <Input allowClear placeholder={"Начните вводить пункт"} style={{width: 300}}/>
+                  <AutoComplete style={{width: 300}} allowClear options={pointOptions} value={pointValue}
+                                onChange={(e) => {
+                                  setPointValue(e)
+                                }}
+                                disabled={!cityValue || pointOptions.length === 0}
+                                placeholder="Начните вводить пункт"
+                                filterOption={(inputValue, option) =>
+                                  option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                                }
+                  />
                 </Space>
               </div>
             </div>
 
             <YMaps>
-              <Map defaultState={{center: [45.057008, 38.966096], zoom: 13}} width={"90%"} height={"600px"}>
+              <Map defaultState={{center: [45.057008, 38.966096], zoom: 13}} className={"map"}>
                 <Placemark geometry={[45.053424, 38.967237]}/>
                 <Placemark geometry={[45.055857, 38.968707]}/>
                 <Placemark geometry={[45.059707, 38.964920]}/>
@@ -54,7 +92,7 @@ export const OrderPage = () => {
             <Row align={"middle"}>
               <p>Пункт выдачи</p>
               <div className={"chequeDots"}>{}</div>
-              <p className={"chequeValue"}>Такой-то адрес в таком-то городе</p>
+              <div className={"chequeValue"}>{!!cityValue && !!pointValue && <p>{pointValue} {cityValue}</p>}</div>
             </Row>
             <button className={"defaultButton orderPageButton"}>Выбрать модель</button>
           </div>
