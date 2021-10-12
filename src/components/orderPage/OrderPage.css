@@ -1,3 +1,7 @@
+.ant-layout {
+    background-color: white;
+}
+
 .orderPageStepper {
     background-color: white;
     padding: 10px 155px 10px 200px;
@@ -9,7 +13,6 @@
     background-color: white;
     padding-left: 200px;
     padding-top: 20px;
-    min-height: 87.8vh;
 }
 
 .locationGroup {
@@ -23,9 +26,14 @@
     justify-content: flex-end;
 }
 
+.autocomplete {
+    width: 300px;
+}
+
 .orderPageSider {
     background-color: white;
     border-left: 1px solid #EEEEEE;
+    height: 85vh;
 }
 
 .cheque {
@@ -49,7 +57,6 @@
 
 .chequeValue {
     color: #999999;
-    width: 40%;
     text-align: right;
     display: flex;
     justify-content: flex-end;
@@ -64,4 +71,55 @@
 .map {
     width: 90%;
     height: 60vh;
+}
+
+.mobileButton {
+    margin-top: 10px;
+    width: 95%;
+}
+
+@media (max-width: 1440px) {
+    .orderPageStepper {
+        padding: 10px 115px 10px 160px;
+    }
+    .orderPageContent {
+        padding-left: 160px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .orderPageStepper {
+        padding: 10px 80px 10px 125px;
+    }
+    .orderPageContent {
+        padding-left: 125px;
+    }
+}
+
+@media (max-width: 768px) {
+    .orderPageStepper {
+        padding: 10px 60px 10px 105px;
+    }
+    .map {
+        height: 50vh;
+    }
+    .autocomplete {
+        width: 200px;
+    }
+}
+
+@media (max-width: 425px) {
+    .orderPageStepper {
+        padding: 10px 20px 10px 20px;
+    }
+    .orderPageContent {
+        padding-left: 20px;
+    }
+    .map {
+        width: 95%;
+        height: 40vh;
+    }
+    .autocomplete {
+        width: 185px;
+    }
 }

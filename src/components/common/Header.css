@@ -9,7 +9,6 @@
     font-size: 30px;
     line-height: 100%;
     color: #0EC261;
-    margin: 0;
 }
 
 .cityContent {
@@ -33,4 +32,10 @@
     padding-left: 5px;
     padding-top: 5px;
     margin: 0;
+}
+
+@media (max-width: 425px) {
+    .mainPageHeader {
+        margin-bottom: 20px;
+    }
 }
