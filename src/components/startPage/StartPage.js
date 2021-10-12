@@ -17,7 +17,9 @@ export const StartPage = () => {
           <h1 className={"mainPageCompanyTitleOne"}>Каршеринг</h1>
           <p className={"mainPageCompanyTitleTwo"}>Need For Drive</p>
           <p className={"mainPageCompanySlogan"}>Поминутная аренда авто твоего города</p>
-          <a href="/orderPage"><button className={"defaultButton mainPageToBookButton"}>Забронировать</button></a>
+          <a href="/orderPage">
+            <button className={"defaultButton mainPageToBookButton"}>Забронировать</button>
+          </a>
         </div>
       </Content>
       <Footer className={"mainPageFooter"}>

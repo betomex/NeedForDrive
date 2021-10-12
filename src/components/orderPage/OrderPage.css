@@ -15,21 +15,6 @@
     padding-top: 20px;
 }
 
-.locationGroup {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-.locationItem {
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.autocomplete {
-    width: 300px;
-}
-
 .orderPageSider {
     background-color: white;
     border-left: 1px solid #EEEEEE;
@@ -68,16 +53,6 @@
     background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
 }
 
-.map {
-    width: 90%;
-    height: 60vh;
-}
-
-.mobileButton {
-    margin-top: 10px;
-    width: 95%;
-}
-
 @media (max-width: 1440px) {
     .orderPageStepper {
         padding: 10px 115px 10px 160px;
@@ -100,12 +75,6 @@
     .orderPageStepper {
         padding: 10px 60px 10px 105px;
     }
-    .map {
-        height: 50vh;
-    }
-    .autocomplete {
-        width: 200px;
-    }
 }
 
 @media (max-width: 425px) {
@@ -114,12 +83,5 @@
     }
     .orderPageContent {
         padding-left: 20px;
-    }
-    .map {
-        width: 95%;
-        height: 40vh;
-    }
-    .autocomplete {
-        width: 185px;
     }
 }
