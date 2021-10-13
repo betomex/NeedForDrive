@@ -4,6 +4,7 @@ import './StartPage.css'
 import {SideMenu} from "../common/SideMenu";
 import {Slider} from "./Slider";
 import {Header} from "../common/Header";
+import {Link} from "react-router-dom";
 
 const {Content, Footer} = Layout
 
@@ -17,9 +18,9 @@ export const StartPage = () => {
           <h1 className={"mainPageCompanyTitleOne"}>Каршеринг</h1>
           <p className={"mainPageCompanyTitleTwo"}>Need For Drive</p>
           <p className={"mainPageCompanySlogan"}>Поминутная аренда авто твоего города</p>
-          <a href="/orderPage">
+          <Link to="/orderPage">
             <button className={"defaultButton mainPageToBookButton"}>Забронировать</button>
-          </a>
+          </Link>
         </div>
       </Content>
       <Footer className={"mainPageFooter"}>
