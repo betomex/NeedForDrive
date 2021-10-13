@@ -45,6 +45,7 @@
     text-align: right;
     display: flex;
     justify-content: flex-end;
+    max-width: 55%;
 }
 
 .orderPageButton {
@@ -74,6 +75,12 @@
 @media (max-width: 768px) {
     .orderPageStepper {
         padding: 10px 60px 10px 105px;
+    }
+    .chequeOption {
+        font-size: 12px;
+    }
+    .chequeValue {
+        font-size: 12px;
     }
 }
 

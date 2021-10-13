@@ -12,6 +12,7 @@ export const OrderPage = () => {
   const [cityValue, setCityValue] = useState("")
   const [pointValue, setPointValue] = useState("")
   const [isMobile, setIsMobile] = useState(true)
+  const [isTablet, setIsTablet] = useState(true)
 
   const pageSize = Grid.useBreakpoint()
 
@@ -30,6 +31,11 @@ export const OrderPage = () => {
     } else {
       setIsMobile(true)
     }
+    if (pageSize.lg) {
+      setIsTablet(false)
+    } else {
+      setIsTablet(true)
+    }
   }, [pageSize])
 
   const updateCityValue = (value) => {
@@ -46,12 +52,12 @@ export const OrderPage = () => {
       <Header/>
       <Steps
         current={currentStep}
-        size={isMobile && "small"}
+        responsive
         className={"orderPageStepper"}
       >
-        <Steps.Step title={isMobile ? "Место" : "Местоположение"}/>
+        <Steps.Step title="Местоположение"/>
         <Steps.Step title="Модель"/>
-        <Steps.Step title={isMobile ? "Доп." : "Дополнительно"}/>
+        <Steps.Step title="Дополнительно"/>
         <Steps.Step title="Итого"/>
       </Steps>
       <Layout>
@@ -67,22 +73,40 @@ export const OrderPage = () => {
             updatePointValue={updatePointValue}
           />
           }
+          {currentStep === 1 && <div>Модель</div>}
+          {currentStep === 2 && <div>Дополнительно</div>}
+          {currentStep === 3 && <div>Итого</div>}
         </Layout.Content>
         {!isMobile &&
         <Layout.Sider
-          width={"35%"}
           className={"orderPageSider"}
+          width={isTablet ? "40%" : "35%"}
         >
           <div className={"cheque"}>
             <b className={"chequeTitle"}>Ваш заказ:</b>
             <Row align={"middle"}>
-              <p>Пункт выдачи</p>
+              <p className="chequeOption">Пункт выдачи</p>
               <div className={"chequeDots"}>{}</div>
               <div className={"chequeValue"}>
                 {!!cityValue && !!pointValue && <p>{pointValue}, {cityValue}</p>}
               </div>
             </Row>
-            <button className={"defaultButton orderPageButton"}>Выбрать модель</button>
+            {currentStep === 0 && <button
+              className={"defaultButton orderPageButton"}
+              disabled={!cityValue && !pointValue}
+              onClick={() => setCurrentStep(currentStep + 1)}
+            >Выбрать модель</button>}
+            {currentStep === 1 && <button
+              className={"defaultButton orderPageButton"}
+              onClick={() => setCurrentStep(currentStep + 1)}
+            >Доп опции</button>}
+            {currentStep === 2 && <button
+              className={"defaultButton orderPageButton"}
+              onClick={() => setCurrentStep(currentStep + 1)}
+            >Подтвердить заказ</button>}
+            {currentStep === 3 && <button
+              className={"defaultButton orderPageButton"}
+            >Та да!</button>}
           </div>
         </Layout.Sider>
         }

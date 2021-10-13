@@ -1,4 +1,5 @@
 import {locationAPI, pointAPI} from "../api/api";
+import {locationActions} from "./actions/locationActions";
 
 let initialState = {
   locations: [],
@@ -24,19 +25,14 @@ const locationReducer = (state = initialState, action) => {
   }
 }
 
-export const actions = {
-  setLocations: (locations) => ({type: "LOCATIONS/SET_LOCATIONS", payload: locations}),
-  setPoints: (points) => ({type: "LOCATIONS/SET_POINTS", payload: points})
-}
-
 export const getLocations = () => async (dispatch) => {
   const data = await locationAPI.getLocations()
-  dispatch(actions.setLocations(data))
+  dispatch(locationActions.setLocations(data))
 }
 
 export const getPoints = () => async (dispatch) => {
   const data = await pointAPI.getPoints()
-  dispatch(actions.setPoints(data))
+  dispatch(locationActions.setPoints(data))
 }
 
 export default locationReducer;
