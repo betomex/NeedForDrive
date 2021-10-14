@@ -1,47 +1,26 @@
 import {Col, Layout, Row} from "antd";
-import {EnvironmentOutlined} from "@ant-design/icons";
 import React from "react";
 import './StartPage.css'
-import {SideMenu} from "./SideMenu";
+import {SideMenu} from "../common/SideMenu";
 import {Slider} from "./Slider";
+import {Header} from "../common/Header";
+import {Link} from "react-router-dom";
 
-const {Header, Content, Footer} = Layout
+const {Content, Footer} = Layout
 
 export const StartPage = () => {
   return <Layout>
     <SideMenu/>
     <Layout className="site-layout">
-      <Header className="mainPageHeader">
-        <Row
-          align={"middle"}
-        >
-          <Col
-            xs={{offset: 4, span: 24}}
-            md={{offset: 2, span: 8}}
-            lg={{span: 10}}
-            xl={{span: 10}}
-          >
-            <div className={"mainPageCompany"}>Need For Drive</div>
-          </Col>
-          <Col
-            xs={{offset: 16, span: 12}}
-            md={{offset: 10, span: 4}}
-            lg={{offset: 8}}
-            xl={{offset: 8}}
-          >
-            <div className={"cityContent"}>
-              <EnvironmentOutlined className={"locationIcon"}/>
-              <div className={"cityText"}>Ульяновск</div>
-            </div>
-          </Col>
-        </Row>
-      </Header>
+      <Header/>
       <Content className="site-layout-background">
         <div className={"mainPageContent"}>
           <h1 className={"mainPageCompanyTitleOne"}>Каршеринг</h1>
           <p className={"mainPageCompanyTitleTwo"}>Need For Drive</p>
           <p className={"mainPageCompanySlogan"}>Поминутная аренда авто твоего города</p>
-          <button className={"defaultButton mainPageToBookButton"}>Забронировать</button>
+          <Link to="/orderPage">
+            <button className={"defaultButton mainPageToBookButton"}>Забронировать</button>
+          </Link>
         </div>
       </Content>
       <Footer className={"mainPageFooter"}>

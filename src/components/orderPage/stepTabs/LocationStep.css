@@ -1,0 +1,43 @@
+.locationGroup {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.locationItem {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.autocomplete {
+    width: 300px;
+}
+
+.mobileButton {
+    margin-top: 10px;
+    width: 95%;
+}
+
+@media (max-width: 768px) {
+    .autocomplete {
+        width: 200px;
+    }
+}
+
+@media (max-width: 425px) {
+    .autocomplete {
+        width: 285px;
+    }
+}
+
+@media (max-width: 425px) {
+    .autocomplete {
+        width: 240px;
+    }
+}
+
+@media (max-width: 320px) {
+    .autocomplete {
+        width: 185px;
+    }
+}

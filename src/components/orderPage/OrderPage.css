@@ -1,0 +1,61 @@
+.ant-layout {
+    background-color: white;
+}
+
+.orderPageStepper {
+    background-color: white;
+    padding: 10px 155px 10px 200px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.orderPageContent {
+    background-color: white;
+    padding-left: 200px;
+    padding-top: 20px;
+}
+
+.orderPageSider {
+    background-color: white;
+    border-left: 1px solid #EEEEEE;
+    height: 85vh;
+}
+
+.orderPageButton {
+    border-radius: 8px;
+    background-blend-mode: darken;
+    background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+}
+
+@media (max-width: 1440px) {
+    .orderPageStepper {
+        padding: 10px 115px 10px 160px;
+    }
+    .orderPageContent {
+        padding-left: 160px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .orderPageStepper {
+        padding: 10px 80px 10px 125px;
+    }
+    .orderPageContent {
+        padding-left: 125px;
+    }
+}
+
+@media (max-width: 768px) {
+    .orderPageStepper {
+        padding: 10px 60px 10px 105px;
+    }
+}
+
+@media (max-width: 425px) {
+    .orderPageStepper {
+        padding: 10px 20px 10px 20px;
+    }
+    .orderPageContent {
+        padding-left: 20px;
+    }
+}
