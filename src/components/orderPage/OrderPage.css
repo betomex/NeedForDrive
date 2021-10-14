@@ -21,33 +21,6 @@
     height: 85vh;
 }
 
-.cheque {
-    padding: 20px 0 0 20px;
-    width: 77%;
-    display: flex;
-    flex-direction: column;
-}
-
-.chequeTitle {
-    font-size: 18px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.chequeDots {
-    flex-grow: 1;
-    border-bottom: 1px dotted #999999;
-}
-
-.chequeValue {
-    color: #999999;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    max-width: 55%;
-}
-
 .orderPageButton {
     border-radius: 8px;
     background-blend-mode: darken;
@@ -75,12 +48,6 @@
 @media (max-width: 768px) {
     .orderPageStepper {
         padding: 10px 60px 10px 105px;
-    }
-    .chequeOption {
-        font-size: 12px;
-    }
-    .chequeValue {
-        font-size: 12px;
     }
 }
 

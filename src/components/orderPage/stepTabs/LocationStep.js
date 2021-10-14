@@ -4,7 +4,7 @@ import './LocationStep.css'
 import {MyMap} from "../../common/MyMap";
 
 export const LocationStep = (props) => {
-  const {points, locations, isMobile, cityValue, pointValue, updateCityValue, updatePointValue} = props
+  const {points, locations, cityValue, pointValue, updateCityValue, updatePointValue} = props
 
   const [pointOptions, setPointOptions] = useState([])
 
@@ -57,13 +57,11 @@ export const LocationStep = (props) => {
       </div>
     </div>
 
-    <MyMap cityValue={cityValue} points={points} pointValue={pointValue}
-           updatePointValue={updatePointValue}/>
-
-    {isMobile &&
-    <button
-      className={"defaultButton orderPageButton mobileButton"}
-      disabled={!cityValue && !pointValue}
-    >Выбрать модель</button>}
+    <MyMap
+      cityValue={cityValue}
+      points={points}
+      pointValue={pointValue}
+      updatePointValue={updatePointValue}
+    />
   </div>
 }

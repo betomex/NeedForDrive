@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getLocations, getPoints} from "../../redux/locationReducer";
 import {LocationStep} from "./stepTabs/LocationStep";
+import {Cheque} from "./Cheque";
 
 export const OrderPage = () => {
   const [currentStep, setCurrentStep] = useState(0)
@@ -46,6 +47,10 @@ export const OrderPage = () => {
     setPointValue(value)
   }
 
+  const updateCurrentStep = (step) => {
+    setCurrentStep(step)
+  }
+
   return <Layout className={"layout"}>
     <SideMenu/>
     <Layout>
@@ -66,12 +71,10 @@ export const OrderPage = () => {
           <LocationStep
             points={points}
             locations={locations}
-            isMobile={isMobile}
             cityValue={cityValue}
             pointValue={pointValue}
             updateCityValue={updateCityValue}
-            updatePointValue={updatePointValue}
-          />
+            updatePointValue={updatePointValue}/>
           }
           {currentStep === 1 && <div>Модель</div>}
           {currentStep === 2 && <div>Дополнительно</div>}
@@ -82,35 +85,21 @@ export const OrderPage = () => {
           className={"orderPageSider"}
           width={isTablet ? "40%" : "35%"}
         >
-          <div className={"cheque"}>
-            <b className={"chequeTitle"}>Ваш заказ:</b>
-            <Row align={"middle"}>
-              <p className="chequeOption">Пункт выдачи</p>
-              <div className={"chequeDots"}>{}</div>
-              <div className={"chequeValue"}>
-                {!!cityValue && !!pointValue && <p>{pointValue}, {cityValue}</p>}
-              </div>
-            </Row>
-            {currentStep === 0 && <button
-              className={"defaultButton orderPageButton"}
-              disabled={!cityValue && !pointValue}
-              onClick={() => setCurrentStep(currentStep + 1)}
-            >Выбрать модель</button>}
-            {currentStep === 1 && <button
-              className={"defaultButton orderPageButton"}
-              onClick={() => setCurrentStep(currentStep + 1)}
-            >Доп опции</button>}
-            {currentStep === 2 && <button
-              className={"defaultButton orderPageButton"}
-              onClick={() => setCurrentStep(currentStep + 1)}
-            >Подтвердить заказ</button>}
-            {currentStep === 3 && <button
-              className={"defaultButton orderPageButton"}
-            >Та да!</button>}
-          </div>
+          <Cheque
+            cityValue={cityValue}
+            pointValue={pointValue}
+            currentStep={currentStep}
+            updateCurrentStep={updateCurrentStep}
+          />
         </Layout.Sider>
         }
       </Layout>
+      {isMobile && <Cheque
+        cityValue={cityValue}
+        pointValue={pointValue}
+        currentStep={currentStep}
+        updateCurrentStep={updateCurrentStep}/>
+      }
     </Layout>
   </Layout>
 }

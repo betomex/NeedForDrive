@@ -26,6 +26,18 @@
 
 @media (max-width: 425px) {
     .autocomplete {
+        width: 285px;
+    }
+}
+
+@media (max-width: 425px) {
+    .autocomplete {
+        width: 240px;
+    }
+}
+
+@media (max-width: 320px) {
+    .autocomplete {
         width: 185px;
     }
 }
