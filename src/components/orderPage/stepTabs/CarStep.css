@@ -1,0 +1,61 @@
+.ant-radio-wrapper-checked .ant-radio-inner {
+    border-color: #0EC261;
+}
+
+.ant-radio .ant-radio-inner::after {
+    background-color: #0EC261;
+}
+
+.ant-radio-wrapper {
+    color: #999999;
+}
+
+.ant-radio-wrapper-checked {
+    color: black;
+}
+
+.ant-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.radioGroup {
+    margin-bottom: 40px;
+}
+
+.carCard {
+    width: 368px;
+    height: 224px;
+    border-color: #EEEEEE;
+}
+
+.carCard:hover {
+    border-color: #999999;
+}
+.carCard:active {
+    border-color: #0EC261;
+}
+
+.carName {
+    font-size: 18px;
+    line-height: 21px;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.carPrice {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #999999;
+    margin-bottom: 40px;
+}
+
+.carCardImage {
+    height: 120px;
+    align-self: flex-end;
+}

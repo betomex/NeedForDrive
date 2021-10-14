@@ -1,9 +1,11 @@
 import {Map, Placemark, YMaps} from "react-yandex-maps";
 import {useEffect, useRef, useState} from "react";
 import './MyMap.css'
+import {useDispatch} from "react-redux";
+import {updateChequePoint} from "../../redux/chequeReducer";
 
 export const MyMap = (props) => {
-  const {cityValue, points, pointValue, updatePointValue} = props
+  const {points, cityValue, pointValue} = props
 
   const [pointsCoords, setPointsCoords] = useState([])
   const [ymaps, setYmaps] = useState(null)
@@ -11,6 +13,7 @@ export const MyMap = (props) => {
   const [updateStatus, setUpdateStatus] = useState(0)
 
   const map = useRef();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!!cityValue) {
@@ -78,7 +81,7 @@ export const MyMap = (props) => {
         key={index}
         geometry={tc.coordinates}
         onClick={() => {
-          updatePointValue(tc.name)
+          dispatch(updateChequePoint(cityValue, tc.name))
         }}/>)}
     </Map>
   </YMaps>
