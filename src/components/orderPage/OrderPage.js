@@ -8,7 +8,7 @@ import {Cheque} from "./Cheque";
 import {CarStep} from "./stepTabs/CarStep";
 
 export const OrderPage = () => {
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState(1)
   const [isMobile, setIsMobile] = useState(true)
   const [isTablet, setIsTablet] = useState(true)
 
@@ -64,10 +64,11 @@ export const OrderPage = () => {
         </Layout.Sider>
         }
       </Layout>
-      {isMobile && <Cheque
+      {isMobile &&
+      <Cheque
         currentStep={currentStep}
-        updateCurrentStep={updateCurrentStep}/>
-      }
+        updateCurrentStep={updateCurrentStep}
+      />}
     </Layout>
   </Layout>
 }

@@ -29,6 +29,15 @@ const chequeReducer = (state = initialState, action) => {
         },
       }
     }
+    case "CHEQUE/UPDATE_CAR": {
+      return {
+        ...state,
+        chequeData: {
+          ...state.chequeData,
+          car: {...state.chequeData.car, value: action.payload},
+        },
+      }
+    }
     default:
       return state;
   }
@@ -36,6 +45,10 @@ const chequeReducer = (state = initialState, action) => {
 
 export const updateChequePoint = (city, address) => async (dispatch) => {
   dispatch(chequeActions.updateChequePoint(city, address))
+}
+
+export const updateChequeCar = (car) => async (dispatch) => {
+  dispatch(chequeActions.updateChequeCar(car))
 }
 
 export default chequeReducer;

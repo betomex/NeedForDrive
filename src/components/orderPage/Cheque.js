@@ -7,6 +7,7 @@ export const Cheque = (props) => {
 
   const cityValue = useSelector(state => state.cheque.chequeData.city.value)
   const pointValue = useSelector(state => state.cheque.chequeData.address.value)
+  const carValue = useSelector(state => state.cheque.chequeData.car.value)
 
   return <div className={"cheque"}>
     <b className={"chequeTitle"}>Ваш заказ:</b>
@@ -17,9 +18,18 @@ export const Cheque = (props) => {
         {!!cityValue && !!pointValue && <p>{pointValue}, {cityValue}</p>}
       </div>
     </Row>
+    {currentStep === 1 &&
+    <Row align={"middle"}>
+      <p className="chequeOption">Модель</p>
+      <div className={"chequeDots"}>{}</div>
+      <div className={"chequeValue"}>
+        {!!carValue && <p>{carValue}</p>}
+      </div>
+    </Row>}
     <CurrentStepButton
       cityValue={cityValue}
       pointValue={pointValue}
+      carValue={carValue}
       currentStep={currentStep}
       updateCurrentStep={updateCurrentStep}
     />
@@ -27,7 +37,7 @@ export const Cheque = (props) => {
 }
 
 const CurrentStepButton = (props) => {
-  const {cityValue, pointValue, currentStep, updateCurrentStep} = props
+  const {cityValue, pointValue, carValue, currentStep, updateCurrentStep} = props
 
   switch (currentStep) {
     case 0:
@@ -39,6 +49,7 @@ const CurrentStepButton = (props) => {
     case 1:
       return <button
         className={"defaultButton orderPageButton"}
+        disabled={!carValue}
         onClick={() => updateCurrentStep(currentStep + 1)}
       >Доп опции</button>
     case 2:
