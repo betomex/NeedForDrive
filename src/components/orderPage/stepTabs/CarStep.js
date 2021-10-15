@@ -63,20 +63,24 @@ export const CarStep = () => {
       tip={"Загрузка данных... Ориентировочное время ожидания 40 сек"}
       size={"large"}/>
     }
-    <Row style={{overflowY: "auto", height: "75vh"}}>
+    <Row className={"carCardContainer"}>
       {filteredCars.map(c => c.thumbnail.path &&
         <Col key={c.id}>
           <Card
             className={"carCard"}
             onClick={() => {
-              dispatch(updateChequeCar(document.getElementById("carName" + c.id).innerText))
+              dispatch(updateChequeCar(c))
             }}
           >
             <div>
-              <p className={"carName"} id={"carName" + c.id}>{c.name.toUpperCase()}</p>
+              <p className={"carName"}>{c.name.toUpperCase()}</p>
               <p className={"carPrice"}>{c.priceMin} - {c.priceMax} ₽</p>
             </div>
-            <img className={"carCardImage"} src={c.thumbnail.path} alt={c.description}/>
+            <img
+              className={"carCardImage"}
+              src={c.thumbnail.path}
+              alt={c.description}
+            />
           </Card>
         </Col>)
       }

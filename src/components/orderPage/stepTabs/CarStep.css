@@ -24,6 +24,11 @@
     margin-bottom: 40px;
 }
 
+.carCardContainer {
+    overflow-y: auto;
+    height: 75vh
+}
+
 .carCard {
     width: 368px;
     height: 224px;
@@ -58,4 +63,41 @@
 .carCardImage {
     height: 120px;
     align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+    .carCard {
+        width: 300px;
+    }
+    .carCardImage {
+        height: 100px;
+    }
+}
+
+@media (max-width: 425px) {
+    .carCard {
+        width: 385px;
+        height: 150px;
+    }
+    .carCardImage {
+        height: 90px;
+    }
+    .carCardContainer {
+        height: 30vh
+    }
+    .carPrice {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 375px) {
+    .carCard {
+        width: 335px;
+    }
+}
+
+@media (max-width: 320px) {
+    .carCard {
+        width: 280px;
+    }
 }

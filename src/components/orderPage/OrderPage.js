@@ -8,7 +8,7 @@ import {Cheque} from "./Cheque";
 import {CarStep} from "./stepTabs/CarStep";
 
 export const OrderPage = () => {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(0)
   const [isMobile, setIsMobile] = useState(true)
   const [isTablet, setIsTablet] = useState(true)
 

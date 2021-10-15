@@ -12,7 +12,7 @@ let initialState = {
     },
     car: {
       name: "Модель",
-      value: ""
+      value: null
     }
   }
 }

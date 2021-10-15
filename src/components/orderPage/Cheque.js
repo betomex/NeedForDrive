@@ -18,14 +18,18 @@ export const Cheque = (props) => {
         {!!cityValue && !!pointValue && <p>{pointValue}, {cityValue}</p>}
       </div>
     </Row>
-    {currentStep === 1 &&
-    <Row align={"middle"}>
-      <p className="chequeOption">Модель</p>
-      <div className={"chequeDots"}>{}</div>
-      <div className={"chequeValue"}>
-        {!!carValue && <p>{carValue}</p>}
-      </div>
-    </Row>}
+    {currentStep >= 1 &&
+    <div>
+      <Row align={"middle"}>
+        <p className="chequeOption">Модель</p>
+        <div className={"chequeDots"}>{}</div>
+        <div className={"chequeValue"}>
+          {!!carValue && <p>{carValue?.name}</p>}
+        </div>
+      </Row>
+      <p className={"chequePrice"}>Цена: от {carValue?.priceMin} до {carValue?.priceMax} ₽</p>
+    </div>
+    }
     <CurrentStepButton
       cityValue={cityValue}
       pointValue={pointValue}
