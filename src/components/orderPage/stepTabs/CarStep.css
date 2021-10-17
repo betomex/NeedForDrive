@@ -35,6 +35,10 @@
     border-color: #EEEEEE;
 }
 
+.carCardSelected {
+    border-color: #0EC261;
+}
+
 .carCard:hover {
     border-color: #999999;
 }

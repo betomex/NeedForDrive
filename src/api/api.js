@@ -23,5 +23,8 @@ export const pointAPI = {
 export const carAPI = {
   getCars() {
     return instance.get(`db/car`).then(r => r.data.data);
+  },
+  getCategories() {
+    return instance.get(`db/category`).then(r => r.data.data);
   }
 }

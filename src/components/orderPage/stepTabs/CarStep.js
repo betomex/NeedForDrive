@@ -2,7 +2,7 @@ import {Card, Col, Radio, Row, Spin} from 'antd';
 import './CarStep.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getCars} from "../../../redux/carReducer";
+import {getCars, getCategories} from "../../../redux/carReducer";
 import {updateChequeCar} from "../../../redux/chequeReducer";
 
 export const CarStep = () => {
@@ -10,11 +10,13 @@ export const CarStep = () => {
   const [filteredCars, setFilteredCars] = useState([])
 
   const cars = useSelector(state => state.orderPageCar.cars)
+  const selectedCar = useSelector(state => state.cheque.chequeData.car)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getCars())
+    dispatch(getCategories())
   }, [])
 
   useEffect(() => {
@@ -27,15 +29,15 @@ export const CarStep = () => {
 
     switch (radio) {
       case 2:
-        tempCars = cars.filter(c => {
-          let name = c.categoryId?.name
+        tempCars = cars.filter(car => {
+          const name = car.categoryId?.name
           return name === "Эконом+" || name === "Супер-эконом"
         })
         setFilteredCars(tempCars)
         break
       case 3:
-        tempCars = cars.filter(c => {
-          let name = c.categoryId?.name
+        tempCars = cars.filter(car => {
+          const name = car.categoryId?.name
           return name === "Люкс" || name === "Спорт" || name === "Бизнес"
         })
         setFilteredCars(tempCars)
@@ -64,22 +66,22 @@ export const CarStep = () => {
       size={"large"}/>
     }
     <Row className={"carCardContainer"}>
-      {filteredCars.map(c => c.thumbnail.path &&
-        <Col key={c.id}>
+      {filteredCars.map(car => car.thumbnail.path &&
+        <Col key={car.id}>
           <Card
-            className={"carCard"}
+            className={car.id === selectedCar?.id ? "carCard carCardSelected" : "carCard"}
             onClick={() => {
-              dispatch(updateChequeCar(c))
+              dispatch(updateChequeCar(car))
             }}
           >
             <div>
-              <p className={"carName"}>{c.name.toUpperCase()}</p>
-              <p className={"carPrice"}>{c.priceMin} - {c.priceMax} ₽</p>
+              <p className={"carName"}>{car.name.toUpperCase()}</p>
+              <p className={"carPrice"}>{car.priceMin} - {car.priceMax} ₽</p>
             </div>
             <img
               className={"carCardImage"}
-              src={c.thumbnail.path}
-              alt={c.description}
+              src={car.thumbnail.path}
+              alt={car.description}
             />
           </Card>
         </Col>)

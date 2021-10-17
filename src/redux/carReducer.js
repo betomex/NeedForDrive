@@ -1,7 +1,7 @@
 import {carAPI} from "../api/api";
 import {carActions} from "./actions/carActions";
 
-let initialState = {
+const initialState = {
   cars: []
 };
 
@@ -21,6 +21,12 @@ const carReducer = (state = initialState, action) => {
 export const getCars = () => async (dispatch) => {
   const data = await carAPI.getCars()
   dispatch(carActions.setCars(data))
+}
+
+export const getCategories = () => async (dispatch) => {
+  const data = await carAPI.getCategories()
+  console.log(data)
+  //dispatch(carActions.setCars(data))
 }
 
 export default carReducer;

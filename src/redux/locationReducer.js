@@ -1,7 +1,7 @@
 import {locationAPI, pointAPI} from "../api/api";
 import {locationActions} from "./actions/locationActions";
 
-let initialState = {
+const initialState = {
   locations: [],
   points: [],
 };

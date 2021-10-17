@@ -1,19 +1,10 @@
 import {chequeActions} from "./actions/chequeActions";
 
-let initialState = {
+const initialState = {
   chequeData: {
-    city: {
-      name: "Город",
-      value: ""
-    },
-    address: {
-      name: "Адрес",
-      value: ""
-    },
-    car: {
-      name: "Модель",
-      value: null
-    }
+    city: null,
+    address: null,
+    car: null
   }
 }
 
@@ -24,8 +15,8 @@ const chequeReducer = (state = initialState, action) => {
         ...state,
         chequeData: {
           ...state.chequeData,
-          city: {...state.chequeData.city, value: action.payload.city},
-          address: {...state.chequeData.address, value: action.payload.address}
+          city: action.payload.city,
+          address: action.payload.address
         },
       }
     }
@@ -34,7 +25,7 @@ const chequeReducer = (state = initialState, action) => {
         ...state,
         chequeData: {
           ...state.chequeData,
-          car: {...state.chequeData.car, value: action.payload},
+          car: action.payload,
         },
       }
     }

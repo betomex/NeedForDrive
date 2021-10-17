@@ -5,35 +5,34 @@ import {useSelector} from "react-redux";
 export const Cheque = (props) => {
   const {currentStep, updateCurrentStep} = props
 
-  const cityValue = useSelector(state => state.cheque.chequeData.city.value)
-  const pointValue = useSelector(state => state.cheque.chequeData.address.value)
-  const carValue = useSelector(state => state.cheque.chequeData.car.value)
+  const chequeData = useSelector(state => state.cheque.chequeData)
+  const {city, address, car} = chequeData
 
   return <div className={"cheque"}>
     <b className={"chequeTitle"}>Ваш заказ:</b>
     <Row align={"middle"}>
       <p className="chequeOption">Пункт выдачи</p>
-      <div className={"chequeDots"}>{}</div>
+      <div className={"chequeDots"}/>
       <div className={"chequeValue"}>
-        {!!cityValue && !!pointValue && <p>{pointValue}, {cityValue}</p>}
+        {!!city && !!address && <p>{address}, {city}</p>}
       </div>
     </Row>
     {currentStep >= 1 &&
     <div>
       <Row align={"middle"}>
         <p className="chequeOption">Модель</p>
-        <div className={"chequeDots"}>{}</div>
+        <div className={"chequeDots"}/>
         <div className={"chequeValue"}>
-          {!!carValue && <p>{carValue?.name}</p>}
+          {!!car && <p>{car?.name}</p>}
         </div>
       </Row>
-      <p className={"chequePrice"}>Цена: от {carValue?.priceMin} до {carValue?.priceMax} ₽</p>
+      <p className={"chequePrice"}>Цена: от {car?.priceMin} до {car?.priceMax} ₽</p>
     </div>
     }
     <CurrentStepButton
-      cityValue={cityValue}
-      pointValue={pointValue}
-      carValue={carValue}
+      city={city}
+      address={address}
+      car={car}
       currentStep={currentStep}
       updateCurrentStep={updateCurrentStep}
     />
@@ -41,19 +40,19 @@ export const Cheque = (props) => {
 }
 
 const CurrentStepButton = (props) => {
-  const {cityValue, pointValue, carValue, currentStep, updateCurrentStep} = props
+  const {city, address, car, currentStep, updateCurrentStep} = props
 
   switch (currentStep) {
     case 0:
       return <button
         className={"defaultButton orderPageButton"}
-        disabled={!cityValue && !pointValue}
+        disabled={!city && !address}
         onClick={() => updateCurrentStep(currentStep + 1)}
       >Выбрать модель</button>
     case 1:
       return <button
         className={"defaultButton orderPageButton"}
-        disabled={!carValue}
+        disabled={!car}
         onClick={() => updateCurrentStep(currentStep + 1)}
       >Доп опции</button>
     case 2:

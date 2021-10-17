@@ -37,15 +37,15 @@ export const MyMap = (props) => {
 
   useEffect(() => {
     const names = []
-    const pointsNames = points.map(p => {
-      names.push(p.address)
-      return p.cityId?.name + ", " + p.address
+    const pointsNames = points.map(point => {
+      names.push(point.address)
+      return point.cityId?.name + ", " + point.address
     })
     let tempPointsCoords = []
 
     for (let i = 0; i < pointsNames.length; i++) {
       ymaps?.geocode(pointsNames[i]).then(r => {
-        let coords = r.geoObjects.get(0).geometry.getCoordinates()
+        const coords = r.geoObjects.get(0).geometry.getCoordinates()
         tempPointsCoords.push({coordinates: coords, name: names[i]})
       })
     }
@@ -77,11 +77,11 @@ export const MyMap = (props) => {
         setUpdateStatus(1)
       }}
     >
-      {pointsCoords.map((tc, index) => <Placemark
+      {pointsCoords.map((pointCoords, index) => <Placemark
         key={index}
-        geometry={tc.coordinates}
+        geometry={pointCoords.coordinates}
         onClick={() => {
-          dispatch(updateChequePoint(cityValue, tc.name))
+          dispatch(updateChequePoint(cityValue, pointCoords.name))
         }}/>)}
     </Map>
   </YMaps>
