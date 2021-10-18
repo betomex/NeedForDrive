@@ -2,7 +2,8 @@ import {carAPI} from "../api/api";
 import {carActions} from "./actions/carActions";
 
 const initialState = {
-  cars: []
+  cars: [],
+  categories: []
 };
 
 const carReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const carReducer = (state = initialState, action) => {
       return {
         ...state,
         cars: action.payload
+      }
+    }
+    case "CARS/SET_CATEGORIES": {
+      return {
+        ...state,
+        categories: action.payload
       }
     }
     default:
@@ -25,8 +32,7 @@ export const getCars = () => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   const data = await carAPI.getCategories()
-  console.log(data)
-  //dispatch(carActions.setCars(data))
+  dispatch(carActions.setCategories(data))
 }
 
 export default carReducer;

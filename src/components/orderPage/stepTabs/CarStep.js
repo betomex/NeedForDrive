@@ -9,14 +9,15 @@ export const CarStep = () => {
   const [radio, setRadio] = useState(1)
   const [filteredCars, setFilteredCars] = useState([])
 
-  const cars = useSelector(state => state.orderPageCar.cars)
+  const carsData = useSelector(state => state.orderPageCar)
   const selectedCar = useSelector(state => state.cheque.chequeData.car)
+  const {cars, categories} = carsData
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCars())
     dispatch(getCategories())
+    dispatch(getCars())
   }, [])
 
   useEffect(() => {
@@ -27,23 +28,12 @@ export const CarStep = () => {
     setFilteredCars(cars)
     let tempCars = []
 
-    switch (radio) {
-      case 2:
-        tempCars = cars.filter(car => {
-          const name = car.categoryId?.name
-          return name === "Эконом+" || name === "Супер-эконом"
-        })
-        setFilteredCars(tempCars)
-        break
-      case 3:
-        tempCars = cars.filter(car => {
-          const name = car.categoryId?.name
-          return name === "Люкс" || name === "Спорт" || name === "Бизнес"
-        })
-        setFilteredCars(tempCars)
-        break
-      default:
-        break
+    if (radio !== "all") {
+      tempCars = cars.filter(car => {
+        const name = car.categoryId?.name
+        return name === radio
+      })
+      setFilteredCars(tempCars)
     }
   }, [radio])
 
@@ -55,9 +45,8 @@ export const CarStep = () => {
         className={"radioGroup"}
         onChange={(e) => setRadio(e.target.value)}
       >
-        <Radio value={1}>Все модели</Radio>
-        <Radio value={2}>Эконом</Radio>
-        <Radio value={3}>Премиум</Radio>
+        <Radio value={"all"}>Все модели</Radio>
+        {categories.map(category => <Radio value={category.name}>{category.name}</Radio>)}
       </Radio.Group>
     </div>
     {cars.length === 0 &&
