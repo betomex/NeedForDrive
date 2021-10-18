@@ -1,9 +1,11 @@
 import {Map, Placemark, YMaps} from "react-yandex-maps";
 import {useEffect, useRef, useState} from "react";
 import './MyMap.css'
+import {useDispatch} from "react-redux";
+import {updateChequePoint} from "../../redux/chequeReducer";
 
 export const MyMap = (props) => {
-  const {cityValue, points, pointValue, updatePointValue} = props
+  const {points, cityValue, pointValue} = props
 
   const [pointsCoords, setPointsCoords] = useState([])
   const [ymaps, setYmaps] = useState(null)
@@ -11,6 +13,7 @@ export const MyMap = (props) => {
   const [updateStatus, setUpdateStatus] = useState(0)
 
   const map = useRef();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!!cityValue) {
@@ -34,15 +37,15 @@ export const MyMap = (props) => {
 
   useEffect(() => {
     const names = []
-    const pointsNames = points.map(p => {
-      names.push(p.address)
-      return p.cityId?.name + ", " + p.address
+    const pointsNames = points.map(point => {
+      names.push(point.address)
+      return point.cityId?.name + ", " + point.address
     })
     let tempPointsCoords = []
 
     for (let i = 0; i < pointsNames.length; i++) {
       ymaps?.geocode(pointsNames[i]).then(r => {
-        let coords = r.geoObjects.get(0).geometry.getCoordinates()
+        const coords = r.geoObjects.get(0).geometry.getCoordinates()
         tempPointsCoords.push({coordinates: coords, name: names[i]})
       })
     }
@@ -74,11 +77,11 @@ export const MyMap = (props) => {
         setUpdateStatus(1)
       }}
     >
-      {pointsCoords.map((tc, index) => <Placemark
+      {pointsCoords.map((pointCoords, index) => <Placemark
         key={index}
-        geometry={tc.coordinates}
+        geometry={pointCoords.coordinates}
         onClick={() => {
-          updatePointValue(tc.name)
+          dispatch(updateChequePoint(cityValue, pointCoords.name))
         }}/>)}
     </Map>
   </YMaps>

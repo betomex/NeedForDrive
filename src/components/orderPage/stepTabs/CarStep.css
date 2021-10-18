@@ -1,0 +1,107 @@
+.ant-radio-wrapper-checked .ant-radio-inner {
+    border-color: #0EC261;
+}
+
+.ant-radio .ant-radio-inner::after {
+    background-color: #0EC261;
+}
+
+.ant-radio-wrapper {
+    color: #999999;
+}
+
+.ant-radio-wrapper-checked {
+    color: black;
+}
+
+.ant-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.radioGroup {
+    margin-bottom: 40px;
+}
+
+.carCardContainer {
+    overflow-y: auto;
+    height: 75vh
+}
+
+.carCard {
+    width: 368px;
+    height: 224px;
+    border-color: #EEEEEE;
+}
+
+.carCardSelected {
+    border-color: #0EC261;
+}
+
+.carCard:hover {
+    border-color: #999999;
+}
+.carCard:active {
+    border-color: #0EC261;
+}
+
+.carName {
+    font-size: 18px;
+    line-height: 21px;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.carPrice {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #999999;
+    margin-bottom: 40px;
+}
+
+.carCardImage {
+    height: 120px;
+    align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+    .carCard {
+        width: 300px;
+    }
+    .carCardImage {
+        height: 100px;
+    }
+}
+
+@media (max-width: 425px) {
+    .carCard {
+        width: 385px;
+        height: 150px;
+    }
+    .carCardImage {
+        height: 90px;
+    }
+    .carCardContainer {
+        height: 30vh
+    }
+    .carPrice {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 375px) {
+    .carCard {
+        width: 335px;
+    }
+}
+
+@media (max-width: 320px) {
+    .carCard {
+        width: 280px;
+    }
+}

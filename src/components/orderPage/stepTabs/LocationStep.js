@@ -2,20 +2,32 @@ import {useEffect, useState} from "react";
 import {AutoComplete, Space} from "antd";
 import './LocationStep.css'
 import {MyMap} from "../../common/MyMap";
+import {useDispatch, useSelector} from "react-redux";
+import {updateChequePoint} from "../../../redux/chequeReducer";
+import {getLocations, getPoints} from "../../../redux/locationReducer";
 
-export const LocationStep = (props) => {
-  const {points, locations, cityValue, pointValue, updateCityValue, updatePointValue} = props
-
+export const LocationStep = () => {
   const [pointOptions, setPointOptions] = useState([])
+
+  const dispatch = useDispatch()
+  const locations = useSelector(state => state.orderPageLocation.locations)
+  const points = useSelector(state => state.orderPageLocation.points)
+  const chequeData = useSelector(state => state.cheque.chequeData)
+  const {city, address} = chequeData
+
+  useEffect(() => {
+    dispatch(getLocations())
+    dispatch(getPoints())
+  }, [])
 
   useEffect(() => {
     const options = points
-      .filter(p => p.cityId?.name === cityValue)
-      .map(p => ({"value": p.address}))
+      .filter(point => point.cityId?.name === city)
+      .map(point => ({"value": point.address}))
     setPointOptions(options)
-  }, [cityValue])
+  }, [city])
 
-  const locationOptions = locations.map(l => ({"value": l.name}))
+  const locationOptions = locations.map(location => ({"value": location.name}))
 
   return <div>
     <div className={"locationGroup"}>
@@ -26,11 +38,8 @@ export const LocationStep = (props) => {
             className={"autocomplete"}
             allowClear
             options={locationOptions}
-            value={cityValue}
-            onChange={(e) => {
-              updateCityValue(e)
-              updatePointValue("")
-            }}
+            value={city}
+            onChange={(e) => dispatch(updateChequePoint(e, ""))}
             placeholder="Начните вводить город"
             filterOption={(inputValue, option) =>
               option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
@@ -45,9 +54,9 @@ export const LocationStep = (props) => {
             className={"autocomplete"}
             allowClear
             options={pointOptions}
-            value={pointValue}
-            onChange={updatePointValue}
-            disabled={!cityValue || pointOptions.length === 0}
+            value={address}
+            onChange={(e) => dispatch(updateChequePoint(city, e))}
+            disabled={!city || pointOptions.length === 0}
             placeholder="Начните вводить пункт"
             filterOption={(inputValue, option) =>
               option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
@@ -58,10 +67,9 @@ export const LocationStep = (props) => {
     </div>
 
     <MyMap
-      cityValue={cityValue}
+      cityValue={city}
       points={points}
-      pointValue={pointValue}
-      updatePointValue={updatePointValue}
+      pointValue={address}
     />
   </div>
 }
