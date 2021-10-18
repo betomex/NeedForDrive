@@ -46,7 +46,11 @@ export const CarStep = () => {
         onChange={(e) => setRadio(e.target.value)}
       >
         <Radio value={"all"}>Все модели</Radio>
-        {categories.map(category => <Radio value={category.name}>{category.name}</Radio>)}
+        {categories.map(category =>
+          <Radio
+            key={category.id}
+            value={category.name}
+          >{category.name}</Radio>)}
       </Radio.Group>
     </div>
     {cars.length === 0 &&

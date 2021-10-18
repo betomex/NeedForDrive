@@ -28,3 +28,9 @@ export const carAPI = {
     return instance.get(`db/category`).then(r => r.data.data);
   }
 }
+
+export const addonAPI = {
+  getTariff() {
+    return instance.get(`db/rate`).then(r => r.data.data);
+  }
+}
