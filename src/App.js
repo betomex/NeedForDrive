@@ -1,8 +1,8 @@
 import React from "react";
 import 'antd/dist/antd.css';
-import {StartPage} from "./components/startPage/StartPage";
+import {StartPage} from "./pages/startPage/StartPage";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {OrderPage} from "./components/orderPage/OrderPage";
+import {OrderPage} from "./pages/orderPage/OrderPage";
 
 const App = () => {
   return <Switch>

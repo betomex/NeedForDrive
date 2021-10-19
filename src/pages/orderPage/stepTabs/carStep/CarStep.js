@@ -2,8 +2,8 @@ import {Card, Col, Radio, Row, Spin} from 'antd';
 import './CarStep.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getCars, getCategories} from "../../../redux/carReducer";
-import {updateChequeCar} from "../../../redux/chequeReducer";
+import {getCars, getCategories} from "../../../../redux/carReducer";
+import {updateChequeCar} from "../../../../redux/chequeReducer";
 
 export const CarStep = () => {
   const [radio, setRadio] = useState(1)

@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import {AutoComplete, Space} from "antd";
 import './LocationStep.css'
-import {MyMap} from "../../common/MyMap";
+import {MyMap} from "./MyMap";
 import {useDispatch, useSelector} from "react-redux";
-import {updateChequePoint} from "../../../redux/chequeReducer";
-import {getLocations, getPoints} from "../../../redux/locationReducer";
+import {updateChequePoint} from "../../../../redux/chequeReducer";
+import {getLocations, getPoints} from "../../../../redux/locationReducer";
 
 export const LocationStep = () => {
   const [pointOptions, setPointOptions] = useState([])

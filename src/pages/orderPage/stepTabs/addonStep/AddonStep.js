@@ -3,14 +3,14 @@ import {Checkbox, ConfigProvider, DatePicker, Radio, Space} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import locale from 'antd/es/date-picker/locale/ru_RU';
-import {getTariff} from "../../../redux/addonReducer";
+import {getTariff} from "../../../../redux/addonReducer";
 import {
   updateChequeIsFullTank,
   updateChequeIsNeedChildChair,
   updateChequeIsRightWheel,
   updateChequeColor, updateChequeDate,
   updateChequeTariff
-} from "../../../redux/chequeReducer";
+} from "../../../../redux/chequeReducer";
 
 export const AddonStep = (props) => {
   const {isMobile} = props

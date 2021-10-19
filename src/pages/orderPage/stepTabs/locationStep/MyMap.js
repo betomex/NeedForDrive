@@ -2,7 +2,7 @@ import {Map, Placemark, YMaps} from "react-yandex-maps";
 import {useEffect, useRef, useState} from "react";
 import './MyMap.css'
 import {useDispatch} from "react-redux";
-import {updateChequePoint} from "../../redux/chequeReducer";
+import {updateChequePoint} from "../../../../redux/chequeReducer";
 
 export const MyMap = (props) => {
   const {points, cityValue, pointValue} = props
