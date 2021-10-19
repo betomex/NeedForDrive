@@ -1,0 +1,51 @@
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #0EC261;
+    border-color: #0EC261;
+}
+
+.ant-picker:hover {
+    border-color: #0EC261;
+}
+
+.ant-picker-focused {
+    border-color: #0EC261;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+    border: 1px solid #0EC261;
+}
+
+.ant-btn-primary {
+    border-color: #0EC261;
+    background: #0EC261;
+}
+
+.ant-btn-primary:hover {
+    background-color: #0EC261;
+    filter: brightness(90%);
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+    background: #0EC261;
+}
+
+.pickerTitle {
+    margin-top: 25px;
+}
+
+@media (max-width: 768px) {
+    .dateTimePicker {
+        width: 95%;
+    }
+}
+
+@media (max-width: 425px) {
+    .dateTimePicker {
+        width: 95%;
+    }
+    .ant-picker-datetime-panel {
+        flex-direction: column;
+    }
+}

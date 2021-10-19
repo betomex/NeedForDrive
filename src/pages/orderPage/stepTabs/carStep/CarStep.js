@@ -2,8 +2,8 @@ import {Card, Col, Radio, Row, Spin} from 'antd';
 import './CarStep.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getCars, getCategories} from "../../../redux/carReducer";
-import {updateChequeCar} from "../../../redux/chequeReducer";
+import {getCars, getCategories} from "../../../../redux/carReducer";
+import {updateChequeCar} from "../../../../redux/chequeReducer";
 
 export const CarStep = () => {
   const [radio, setRadio] = useState(1)
@@ -46,7 +46,11 @@ export const CarStep = () => {
         onChange={(e) => setRadio(e.target.value)}
       >
         <Radio value={"all"}>Все модели</Radio>
-        {categories.map(category => <Radio value={category.name}>{category.name}</Radio>)}
+        {categories.map(category =>
+          <Radio
+            key={category.id}
+            value={category.name}
+          >{category.name}</Radio>)}
       </Radio.Group>
     </div>
     {cars.length === 0 &&
