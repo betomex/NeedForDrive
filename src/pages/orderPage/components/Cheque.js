@@ -1,10 +1,10 @@
 import {Row} from "antd";
 import './Cheque.css'
 import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export const Cheque = (props) => {
-  const {currentStep, updateCurrentStep} = props
+  const {currentStep, updateCurrentStep, setIsModalOpen} = props
 
   const [times, setTimes] = useState(null)
   const [timeDif, setTimeDif] = useState(null)
@@ -30,75 +30,59 @@ export const Cheque = (props) => {
   return <div className={"cheque"}>
     <b className={"chequeTitle"}>Ваш заказ:</b>
 
-    <Row align={"middle"}>
-      <p className="chequeOption">Пункт выдачи</p>
-      <div className={"chequeDots"}/>
-      <div className={"chequeValue"}>
-        {!!city && !!address && <p>{address}, {city}</p>}
-      </div>
-    </Row>
+    <ChequeOption
+      title={"Пункт выдачи"}
+      text={address + ", " + city}
+      condition={!!city && !!address}
+    />
 
     {currentStep >= 1 &&
-    <Row align={"middle"}>
-      <p className="chequeOption">Модель</p>
-      <div className={"chequeDots"}/>
-      <div className={"chequeValue"}>
-        {!!car && <p>{car?.name}</p>}
-      </div>
-    </Row>
+    <ChequeOption
+      title={"Модель"}
+      text={car?.name}
+      condition={!!car}
+    />
     }
 
     {currentStep >= 2 && <div>
-      <Row align={"middle"}>
-        <p className="chequeOption">Цвет</p>
-        <div className={"chequeDots"}/>
-        <div className={"chequeValue"}>
-          {!!color && <p>{color}</p>}
-        </div>
-      </Row>
+      <ChequeOption
+        title={"Цвет"}
+        text={color}
+        condition={!!color}
+      />
 
-      <Row align={"middle"}>
-        <p className="chequeOption">Длительность аренды</p>
-        <div className={"chequeDots"}/>
-        <div className={"chequeValue"}>
-          {!!times && <p>{times.d}д. {times.h}ч. {times.m}м.</p>}
-        </div>
-      </Row>
+      <ChequeOption
+        title={"Длительность аренды"}
+        text={times?.d + "д. " + times?.h + "ч. " + times?.m + "м."}
+        condition={!!times}
+      />
 
-      <Row align={"middle"}>
-        <p className="chequeOption">Тариф</p>
-        <div className={"chequeDots"}/>
-        <div className={"chequeValue"}>
-          {!!tariff && <p>{tariff.rateTypeId.name}</p>}
-        </div>
-      </Row>
+      <ChequeOption
+        title={"Тариф"}
+        text={tariff?.rateTypeId.name}
+        condition={!!tariff}
+      />
 
       {!isFullTank &&
-      <Row align={"middle"}>
-        <p className="chequeOption">Полный бак</p>
-        <div className={"chequeDots"}/>
-        <div className={"chequeValue"}>
-          <p>Да</p>
-        </div>
-      </Row>}
+      <ChequeOption
+        title={"Полный бак"}
+        text={"Да"}
+        condition={true}
+      />}
 
       {!isNeedChildChair &&
-      <Row align={"middle"}>
-        <p className="chequeOption">Детское кресло</p>
-        <div className={"chequeDots"}/>
-        <div className={"chequeValue"}>
-          <p>Да</p>
-        </div>
-      </Row>}
+      <ChequeOption
+        title={"Детское кресло"}
+        text={"Да"}
+        condition={true}
+      />}
 
       {!isRightWheel &&
-      <Row align={"middle"}>
-        <p className="chequeOption">Правый руль</p>
-        <div className={"chequeDots"}/>
-        <div className={"chequeValue"}>
-          <p>Да</p>
-        </div>
-      </Row>}
+      <ChequeOption
+        title={"Правый руль"}
+        text={"Да"}
+        condition={true}
+      />}
     </div>}
 
     {currentStep >= 1 &&
@@ -114,18 +98,19 @@ export const Cheque = (props) => {
       color={color}
       date={date}
       tariff={tariff}
+      setIsModalOpen={setIsModalOpen}
     />
   </div>
 }
 
 const CurrentStepButton = (props) => {
-  const {city, address, car, currentStep, updateCurrentStep, color, date, tariff} = props
+  const {city, address, car, currentStep, updateCurrentStep, color, date, tariff, setIsModalOpen} = props
 
   switch (currentStep) {
     case 0:
       return <button
         className={"defaultButton orderPageButton"}
-        disabled={!city && !address}
+        disabled={!city || !address}
         onClick={() => updateCurrentStep(currentStep + 1)}
       >Выбрать модель</button>
     case 1:
@@ -133,18 +118,31 @@ const CurrentStepButton = (props) => {
         className={"defaultButton orderPageButton"}
         disabled={!car}
         onClick={() => updateCurrentStep(currentStep + 1)}
-      >Доп опции</button>
+      >Дополнительно</button>
     case 2:
       return <button
         className={"defaultButton orderPageButton"}
-        disabled={!color && !date && !tariff}
+        disabled={!color || !date || !tariff}
         onClick={() => updateCurrentStep(currentStep + 1)}
-      >Подтвердить заказ</button>
+      >Итого</button>
     case 3:
       return <button
         className={"defaultButton orderPageButton"}
-      >Та да!</button>
+        onClick={() => setIsModalOpen(true)}
+      >Заказать</button>
     default:
       return
   }
+}
+
+const ChequeOption = (props) => {
+  const {title, text, condition} = props
+
+  return <Row align={"middle"}>
+    <p className="chequeOption">{title}</p>
+    <div className={"chequeDots"}/>
+    <div className={"chequeValue"}>
+      {condition && <p>{text}</p>}
+    </div>
+  </Row>
 }

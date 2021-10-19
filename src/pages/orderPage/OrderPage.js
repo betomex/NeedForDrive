@@ -7,11 +7,14 @@ import {LocationStep} from "./stepTabs/locationStep/LocationStep";
 import {Cheque} from "./components/Cheque";
 import {CarStep} from "./stepTabs/carStep/CarStep";
 import {AddonStep} from "./stepTabs/addonStep/AddonStep";
+import {InTotalStep} from "./stepTabs/inTotalStep/InTotalStep";
+import {ConfirmOrder} from "./components/ConfirmOrder";
 
 export const OrderPage = () => {
   const [currentStep, setCurrentStep] = useState(0)
   const [isMobile, setIsMobile] = useState(true)
   const [isTablet, setIsTablet] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const pageSize = Grid.useBreakpoint()
 
@@ -51,7 +54,7 @@ export const OrderPage = () => {
           {currentStep === 0 && <LocationStep/>}
           {currentStep === 1 && <CarStep/>}
           {currentStep === 2 && <AddonStep isMobile={isMobile}/>}
-          {currentStep === 3 && <div>Итого</div>}
+          {currentStep === 3 && <InTotalStep/>}
         </Layout.Content>
         {!isMobile &&
         <Layout.Sider
@@ -61,6 +64,7 @@ export const OrderPage = () => {
           <Cheque
             currentStep={currentStep}
             updateCurrentStep={updateCurrentStep}
+            setIsModalOpen={setIsModalOpen}
           />
         </Layout.Sider>
         }
@@ -69,7 +73,9 @@ export const OrderPage = () => {
       <Cheque
         currentStep={currentStep}
         updateCurrentStep={updateCurrentStep}
+        setIsModalOpen={setIsModalOpen}
       />}
     </Layout>
+    {isModalOpen && <ConfirmOrder setIsModalOpen={setIsModalOpen}/>}
   </Layout>
 }
