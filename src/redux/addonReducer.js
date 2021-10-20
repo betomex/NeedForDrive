@@ -1,4 +1,4 @@
-import {addonAPI, orderAPI} from "../api/api";
+import {addonAPI} from "../api/api";
 import {addonActions} from "./actions/addonActions";
 
 const initialState = {

@@ -1,4 +1,5 @@
 import {chequeActions} from "./actions/chequeActions";
+import {orderAPI} from "../api/api";
 
 const initialState = {
   chequeData: {
@@ -16,7 +17,7 @@ const initialState = {
     carPrice: 0,
     tankPrice: 0,
     childChairPrice: 0,
-    rightWheelPrice: 0
+    rightWheelPrice: 0,
   }
 }
 
@@ -151,6 +152,12 @@ export const updateChequeIsNeedChildChair = (price) => async (dispatch) => {
 }
 export const updateChequeIsRightWheel = (price) => async (dispatch) => {
   dispatch(chequeActions.updateChequeIsRightWheel(price))
+}
+
+export const postOrder = (data) => async (dispatch) => {
+  const response = await orderAPI.postOrder(data)
+
+  console.log(response)
 }
 
 export default chequeReducer;

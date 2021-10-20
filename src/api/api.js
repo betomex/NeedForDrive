@@ -34,3 +34,9 @@ export const addonAPI = {
     return instance.get(`db/rate`).then(r => r.data.data);
   }
 }
+
+export const orderAPI = {
+  postOrder(body) {
+    return instance.post(`db/order`, body);
+  }
+}

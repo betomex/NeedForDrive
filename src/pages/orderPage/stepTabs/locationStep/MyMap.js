@@ -16,16 +16,16 @@ export const MyMap = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!!cityValue) {
-      ymaps?.geocode(cityValue).then(r => {
+    if (!!cityValue?.name) {
+      ymaps?.geocode(cityValue?.name).then(r => {
         setCoords(r.geoObjects.get(0).geometry.getCoordinates())
       })
     }
   }, [cityValue])
 
   useEffect(() => {
-    if (!!pointValue) {
-      ymaps?.geocode(pointValue + ", " + cityValue).then(r => {
+    if (!!pointValue?.address) {
+      ymaps?.geocode(pointValue?.address + ", " + cityValue?.name).then(r => {
         setCoords(r.geoObjects.get(0).geometry.getCoordinates())
       })
     }
@@ -35,7 +35,7 @@ export const MyMap = (props) => {
     myPanTo(coords)
   }, [coords])
 
-  useEffect(() => {
+  /*useEffect(() => {
     const names = []
     const pointsNames = points.map(point => {
       names.push(point.address)
@@ -51,10 +51,24 @@ export const MyMap = (props) => {
     }
 
     setPointsCoords(tempPointsCoords)
+  }, [updateStatus])*/
+
+  useEffect(() => {
+    let tempPointsCoords = []
+
+    for (let i = 0; i < points.length; i++) {
+      ymaps?.geocode(points[i].cityId?.name + ", " + points[i].address).then(r => {
+        const coords = r.geoObjects.get(0).geometry.getCoordinates()
+        tempPointsCoords.push({...points[i], coordinates: coords})
+      })
+    }
+
+    setPointsCoords(tempPointsCoords)
+    setUpdateStatus(0)
   }, [updateStatus])
 
   const myPanTo = coordinates => {
-    if (!!pointValue) {
+    if (!!pointValue?.address) {
       map.current?.setZoom(16, {duration: 2000})
     } else {
       map.current?.setZoom(11, {duration: 2000})
@@ -81,7 +95,7 @@ export const MyMap = (props) => {
         key={index}
         geometry={pointCoords.coordinates}
         onClick={() => {
-          dispatch(updateChequePoint(cityValue, pointCoords.name))
+          dispatch(updateChequePoint(cityValue, pointCoords))
         }}/>)}
     </Map>
   </YMaps>

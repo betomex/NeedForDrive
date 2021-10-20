@@ -32,8 +32,8 @@ export const Cheque = (props) => {
 
     <ChequeOption
       title={"Пункт выдачи"}
-      text={address + ", " + city}
-      condition={!!city && !!address}
+      text={address?.address + ", " + city?.name}
+      condition={!!city?.name && !!address?.address}
     />
 
     {currentStep >= 1 &&
@@ -90,8 +90,8 @@ export const Cheque = (props) => {
     }
 
     <CurrentStepButton
-      city={city}
-      address={address}
+      city={city?.name}
+      address={address?.address}
       car={car}
       currentStep={currentStep}
       updateCurrentStep={updateCurrentStep}
