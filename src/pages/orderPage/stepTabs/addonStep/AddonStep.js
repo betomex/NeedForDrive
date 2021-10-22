@@ -72,24 +72,21 @@ export const AddonStep = (props) => {
         <Checkbox
           value={1}
           onChange={(e) => {
-            let price = 0
-            if (e.target.checked) price = fullTankPrice
+            const price = e.target.checked ? fullTankPrice : 0
             dispatch(updateChequeIsFullTank(price))
           }}
         >Полный бак, {fullTankPrice}р</Checkbox>
         <Checkbox
           value={2}
           onChange={(e) => {
-            let price = 0
-            if (e.target.checked) price = childChairPrice
+            const price = e.target.checked ? childChairPrice : 0
             dispatch(updateChequeIsNeedChildChair(price))
           }}
         >Детское кресло, {childChairPrice}р</Checkbox>
         <Checkbox
           value={3}
           onChange={(e) => {
-            let price = 0
-            if (e.target.checked) price = rightWheelPrice
+            const price = e.target.checked ? rightWheelPrice : 0
             dispatch(updateChequeIsRightWheel(price))
           }}
         >Правый руль, {rightWheelPrice}р</Checkbox>

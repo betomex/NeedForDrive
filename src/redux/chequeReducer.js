@@ -157,7 +157,9 @@ export const updateChequeIsRightWheel = (price) => async (dispatch) => {
 export const postOrder = (data) => async (dispatch) => {
   const response = await orderAPI.postOrder(data)
 
-  console.log(response)
+  if (response.status === 200) {
+    alert("Ваш заказ размещён")
+  }
 }
 
 export default chequeReducer;

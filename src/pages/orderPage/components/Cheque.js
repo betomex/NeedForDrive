@@ -63,21 +63,21 @@ export const Cheque = (props) => {
         condition={!!tariff}
       />
 
-      {!isFullTank &&
+      {isFullTank &&
       <ChequeOption
         title={"Полный бак"}
         text={"Да"}
         condition={true}
       />}
 
-      {!isNeedChildChair &&
+      {isNeedChildChair &&
       <ChequeOption
         title={"Детское кресло"}
         text={"Да"}
         condition={true}
       />}
 
-      {!isRightWheel &&
+      {isRightWheel &&
       <ChequeOption
         title={"Правый руль"}
         text={"Да"}
