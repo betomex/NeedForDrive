@@ -1,7 +1,7 @@
 import './AddonStep.css'
 import {Checkbox, ConfigProvider, DatePicker, Radio, Space} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import locale from 'antd/es/date-picker/locale/ru_RU';
 import {getTariff} from "../../../../redux/addonReducer";
 import {
@@ -12,15 +12,10 @@ import {
   updateChequeIsRightWheel,
   updateChequeTariff
 } from "../../../../redux/chequeReducer";
+import {childChairPrice, fullTankPrice, rightWheelPrice} from "../../../../lib/constants";
 
 export const AddonStep = (props) => {
   const {isMobile} = props
-
-  const [radioColor, setRadioColor] = useState(null)
-  const [radioTariff, setRadioTariff] = useState(null)
-  const [tankChecked, setTankChecked] = useState(false)
-  const [childChairChecked, setChildChairChecked] = useState(false)
-  const [rightWheelChecked, setRightWheelChecked] = useState(false)
 
   const chequeData = useSelector(state => state.cheque.chequeData)
   const tariffs = useSelector(state => state.orderPageAddons.tariffs)
@@ -32,29 +27,6 @@ export const AddonStep = (props) => {
     dispatch(getTariff())
   }, [])
 
-  useEffect(() => {
-    dispatch(updateChequeTariff(radioTariff))
-  }, [radioTariff])
-
-  useEffect(() => {
-    dispatch(updateChequeColor(radioColor))
-  }, [radioColor])
-
-  useEffect(() => {
-    const tankPrice = tankChecked ? 500 : 0
-    dispatch(updateChequeIsFullTank(tankPrice))
-  }, [tankChecked])
-
-  useEffect(() => {
-    const childChairPrice = childChairChecked ? 200 : 0
-    dispatch(updateChequeIsNeedChildChair(childChairPrice))
-  }, [childChairChecked])
-
-  useEffect(() => {
-    const rightWheelPrice = rightWheelChecked ? 1600 : 0
-    dispatch(updateChequeIsRightWheel(rightWheelPrice))
-  }, [rightWheelChecked])
-
   return <div>
     <p className={"pickerTitle"}>Цвет</p>
     <Radio.Group>
@@ -62,7 +34,7 @@ export const AddonStep = (props) => {
         <Radio
           value={color}
           key={index}
-          onClick={() => setRadioColor(color)}
+          onClick={() => dispatch(updateChequeColor(color))}
         >{color}</Radio>)}
     </Radio.Group>
 
@@ -86,7 +58,7 @@ export const AddonStep = (props) => {
           <Radio
             value={tariff.rateTypeId.name}
             key={tariff.id}
-            onClick={() => setRadioTariff(tariff)}
+            onClick={() => dispatch(updateChequeTariff(tariff))}
           >
             {tariff.rateTypeId.name}, {tariff.price}₽/{tariff.rateTypeId.unit}
           </Radio>
@@ -99,19 +71,28 @@ export const AddonStep = (props) => {
       <Space direction={"vertical"}>
         <Checkbox
           value={1}
-          checked={tankChecked}
-          onChange={() => setTankChecked(!tankChecked)}
-        >Полный бак, 500р</Checkbox>
+          onChange={(e) => {
+            let price = 0
+            if (e.target.checked) price = fullTankPrice
+            dispatch(updateChequeIsFullTank(price))
+          }}
+        >Полный бак, {fullTankPrice}р</Checkbox>
         <Checkbox
           value={2}
-          checked={childChairChecked}
-          onChange={() => setChildChairChecked(!childChairChecked)}
-        >Детское кресло, 200р</Checkbox>
+          onChange={(e) => {
+            let price = 0
+            if (e.target.checked) price = childChairPrice
+            dispatch(updateChequeIsNeedChildChair(price))
+          }}
+        >Детское кресло, {childChairPrice}р</Checkbox>
         <Checkbox
           value={3}
-          checked={rightWheelChecked}
-          onChange={() => setRightWheelChecked(!rightWheelChecked)}
-        >Правый руль, 1600р</Checkbox>
+          onChange={(e) => {
+            let price = 0
+            if (e.target.checked) price = rightWheelPrice
+            dispatch(updateChequeIsRightWheel(price))
+          }}
+        >Правый руль, {rightWheelPrice}р</Checkbox>
       </Space>
     </Checkbox.Group>
   </div>

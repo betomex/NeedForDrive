@@ -1,7 +1,8 @@
 import {Row} from "antd";
 import './Cheque.css'
 import {useSelector} from "react-redux";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+import {dateFormat} from "../../../lib/utils";
 
 export const Cheque = (props) => {
   const {currentStep, updateCurrentStep, setIsModalOpen} = props
@@ -17,14 +18,13 @@ export const Cheque = (props) => {
     ((tariff?.price ? tariff.price : 0) * Math.trunc(timeDif / 1000 / 60))
 
   useEffect(() => {
-    const tempTimeDif = date ? date[1].toDate().getTime() - date[0].toDate().getTime() : 0
-    const tempTimes = {
-      d: Math.round(tempTimeDif / 1000 / 60 / 60 / 24),
-      h: Math.round(tempTimeDif / 1000 / 60 / 60 % 24),
-      m: Math.round(tempTimeDif / 1000 / 60 % 60)
+    let formattedDate = {
+      timeDif: 0,
+      times: {}
     }
-    setTimeDif(tempTimeDif)
-    setTimes(tempTimes)
+    if (date) formattedDate = dateFormat(date)
+    setTimeDif(formattedDate.timeDif)
+    setTimes(formattedDate.times)
   }, [date])
 
   return <div className={"cheque"}>
