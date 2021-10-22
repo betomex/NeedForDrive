@@ -1,8 +1,9 @@
-import {Row} from "antd";
 import './Cheque.css'
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {dateFormat} from "../../../lib/utils";
+import {dateFormat} from "../../../../lib/utils";
+import {ChequeOption} from "./ChequeOption";
+import {CurrentStepButton} from "./CurrentStepButton";
 
 export const Cheque = (props) => {
   const {currentStep, updateCurrentStep, setIsModalOpen} = props
@@ -90,59 +91,15 @@ export const Cheque = (props) => {
     }
 
     <CurrentStepButton
-      city={city?.name}
-      address={address?.address}
-      car={car}
       currentStep={currentStep}
       updateCurrentStep={updateCurrentStep}
-      color={color}
-      date={date}
-      tariff={tariff}
       setIsModalOpen={setIsModalOpen}
+      isDisabled={
+        currentStep === 0 ? !city || !address :
+          currentStep === 1 ? !car :
+            currentStep === 2 ? !color || !date || !tariff :
+              false
+      }
     />
   </div>
-}
-
-const CurrentStepButton = (props) => {
-  const {city, address, car, currentStep, updateCurrentStep, color, date, tariff, setIsModalOpen} = props
-
-  switch (currentStep) {
-    case 0:
-      return <button
-        className={"defaultButton orderPageButton"}
-        disabled={!city || !address}
-        onClick={() => updateCurrentStep(currentStep + 1)}
-      >Выбрать модель</button>
-    case 1:
-      return <button
-        className={"defaultButton orderPageButton"}
-        disabled={!car}
-        onClick={() => updateCurrentStep(currentStep + 1)}
-      >Дополнительно</button>
-    case 2:
-      return <button
-        className={"defaultButton orderPageButton"}
-        disabled={!color || !date || !tariff}
-        onClick={() => updateCurrentStep(currentStep + 1)}
-      >Итого</button>
-    case 3:
-      return <button
-        className={"defaultButton orderPageButton"}
-        onClick={() => setIsModalOpen(true)}
-      >Заказать</button>
-    default:
-      return
-  }
-}
-
-const ChequeOption = (props) => {
-  const {title, text, condition} = props
-
-  return <Row align={"middle"}>
-    <p className="chequeOption">{title}</p>
-    <div className={"chequeDots"}/>
-    <div className={"chequeValue"}>
-      {condition && <p>{text}</p>}
-    </div>
-  </Row>
 }

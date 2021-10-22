@@ -4,7 +4,7 @@ import {SideMenu} from "../common/SideMenu";
 import './OrderPage.css'
 import {useEffect, useState} from "react";
 import {LocationStep} from "./stepTabs/locationStep/LocationStep";
-import {Cheque} from "./components/Cheque";
+import {Cheque} from "./components/cheque/Cheque";
 import {CarStep} from "./stepTabs/carStep/CarStep";
 import {AddonStep} from "./stepTabs/addonStep/AddonStep";
 import {InTotalStep} from "./stepTabs/inTotalStep/InTotalStep";

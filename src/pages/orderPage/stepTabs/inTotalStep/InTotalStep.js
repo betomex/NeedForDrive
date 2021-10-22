@@ -16,7 +16,7 @@ export const InTotalStep = () => {
         <p className={"totalCarNumberContent"}>{carNumber.toUpperCase()}</p>
       </div>
       <p className={"totalTank"}><b>Топливо</b> {car?.tank ? car.tank : 0}%</p>
-      <p><b>Доступна с</b> {date[0].toDate().toLocaleString('ru-RU', { hour12: true })}</p>
+      <p><b>Доступна с</b> {date[0].toDate().toLocaleString('ru-RU')}</p>
     </div>
     <img
       className={"totalCarImage"}
