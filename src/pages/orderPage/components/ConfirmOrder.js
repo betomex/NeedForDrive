@@ -19,6 +19,7 @@ export const ConfirmOrder = (props) => {
 
   const onPostHandler = () => {
     const data = {
+      orderStatusId: "5e26a191099b810b946c5d89",
       cityId: city.id,
       pointId: address.id,
       carId: car.id,
@@ -43,11 +44,13 @@ export const ConfirmOrder = (props) => {
         <button
           className={"modalButton confirmButton"}
           onClick={onPostHandler}
-        >Подтвердить</button>
+        >Подтвердить
+        </button>
         <button
           className={"modalButton cancelButton"}
           onClick={close}
-        >Вернуться</button>
+        >Вернуться
+        </button>
       </div>
     </div>
   </>

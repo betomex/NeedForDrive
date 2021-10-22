@@ -4,7 +4,8 @@ export const instance = axios.create({
   baseURL: 'https://api-factory.simbirsoft1.com/api',
   headers: {
     "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
-    "Access-Control-Allow-Origin": "*"
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json"
   },
 });
 
@@ -36,7 +37,8 @@ export const addonAPI = {
 }
 
 export const orderAPI = {
-  postOrder(body) {
+  postOrder(data) {
+    const body = JSON.stringify(data)
     return instance.post(`db/order`, body);
   }
 }
