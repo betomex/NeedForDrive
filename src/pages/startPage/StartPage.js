@@ -2,7 +2,7 @@ import {Col, Layout, Row} from "antd";
 import React from "react";
 import './StartPage.css'
 import {SideMenu} from "../common/SideMenu";
-import {Slider} from "./Slider";
+import {Slider} from "./components/Slider";
 import {Header} from "../common/Header";
 import {Link} from "react-router-dom";
 

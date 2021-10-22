@@ -41,6 +41,7 @@
     border-radius: 8px;
     background-blend-mode: darken;
     background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+    margin-bottom: 15px;
 }
 
 @media (max-width: 1440px) {

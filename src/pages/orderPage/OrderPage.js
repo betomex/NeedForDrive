@@ -3,12 +3,13 @@ import {Header} from "../common/Header";
 import {SideMenu} from "../common/SideMenu";
 import './OrderPage.css'
 import {useEffect, useState} from "react";
-import {LocationStep} from "./stepTabs/LocationStep";
-import {Cheque} from "./Cheque";
-import {CarStep} from "./stepTabs/CarStep";
+import {LocationStep} from "./stepTabs/locationStep/LocationStep";
+import {Cheque} from "./components/Cheque";
+import {CarStep} from "./stepTabs/carStep/CarStep";
+import {AddonStep} from "./stepTabs/addonStep/AddonStep";
 
 export const OrderPage = () => {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(0)
   const [isMobile, setIsMobile] = useState(true)
   const [isTablet, setIsTablet] = useState(true)
 
@@ -49,7 +50,7 @@ export const OrderPage = () => {
         <Layout.Content className={"orderPageContent"}>
           {currentStep === 0 && <LocationStep/>}
           {currentStep === 1 && <CarStep/>}
-          {currentStep === 2 && <div>Дополнительно</div>}
+          {currentStep === 2 && <AddonStep isMobile={isMobile}/>}
           {currentStep === 3 && <div>Итого</div>}
         </Layout.Content>
         {!isMobile &&
