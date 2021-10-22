@@ -1,0 +1,61 @@
+.totalContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+}
+
+.totalCar {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #121212;
+    margin-top: 20px;
+}
+
+.totalCarNumber {
+    width: 94px;
+    border: 1px solid #999999;
+    border-radius: 4px;
+}
+
+.totalCarNumberContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #121212;
+}
+
+.totalTank {
+    margin-top: 15px;
+}
+
+.totalCarImage {
+    height: 130px;
+    margin-right: 20%;
+}
+
+@media (max-width: 1024px) {
+    .totalCarImage {
+        height: 90px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .totalContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .totalCarImage {
+        margin-top: 20px;
+    }
+}

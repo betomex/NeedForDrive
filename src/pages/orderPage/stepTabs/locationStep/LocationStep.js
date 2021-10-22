@@ -22,12 +22,32 @@ export const LocationStep = () => {
 
   useEffect(() => {
     const options = points
-      .filter(point => point.cityId?.name === city)
+      .filter(point => point.cityId?.name === city?.name)
       .map(point => ({"value": point.address}))
     setPointOptions(options)
   }, [city])
 
   const locationOptions = locations.map(location => ({"value": location.name}))
+
+  const cityOnChangeHandler = (cityValue) => {
+    for (let i = 0; i < locations.length; i++) {
+      if (locations[i].name === cityValue) {
+        dispatch(updateChequePoint(locations[i], ""))
+        return
+      }
+    }
+    dispatch(updateChequePoint(cityValue, ""))
+  }
+
+  const pointOnChangeHandler = (pointValue) => {
+    for (let i = 0; i < points.length; i++) {
+      if (points[i].address === pointValue) {
+        dispatch(updateChequePoint(city, points[i]))
+        return
+      }
+    }
+    dispatch(updateChequePoint(city, pointValue))
+  }
 
   return <div>
     <div className={"locationGroup"}>
@@ -38,11 +58,11 @@ export const LocationStep = () => {
             className={"autocomplete"}
             allowClear
             options={locationOptions}
-            value={city}
-            onChange={(e) => dispatch(updateChequePoint(e, ""))}
+            value={city?.name}
+            onChange={cityOnChangeHandler}
             placeholder="Начните вводить город"
             filterOption={(inputValue, option) =>
-              option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+              option.value.toUpperCase().indexOf(inputValue.name?.toUpperCase()) !== -1
             }
           />
         </Space>
@@ -54,12 +74,12 @@ export const LocationStep = () => {
             className={"autocomplete"}
             allowClear
             options={pointOptions}
-            value={address}
-            onChange={(e) => dispatch(updateChequePoint(city, e))}
-            disabled={!city || pointOptions.length === 0}
+            value={address?.address}
+            onChange={pointOnChangeHandler}
+            disabled={!city?.name || pointOptions.length === 0}
             placeholder="Начните вводить пункт"
             filterOption={(inputValue, option) =>
-              option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+              option.value.toUpperCase().indexOf(inputValue.address?.toUpperCase()) !== -1
             }
           />
         </Space>
