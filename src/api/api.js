@@ -40,5 +40,8 @@ export const orderAPI = {
   postOrder(data) {
     const body = JSON.stringify(data)
     return instance.post(`db/order`, body);
+  },
+  getOrderByID(id) {
+    return instance.get(`db/order/${id}`).then(r => r.data.data);
   }
 }

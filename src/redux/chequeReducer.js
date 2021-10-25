@@ -18,7 +18,8 @@ const initialState = {
     tankPrice: 0,
     childChairPrice: 0,
     rightWheelPrice: 0,
-  }
+  },
+  order: null
 }
 
 const chequeReducer = (state = initialState, action) => {
@@ -121,6 +122,12 @@ const chequeReducer = (state = initialState, action) => {
         }
       }
     }
+    case "CHEQUE/SET_ORDER": {
+      return {
+        ...state,
+        order: action.payload
+      }
+    }
     default:
       return state;
   }
@@ -158,8 +165,15 @@ export const postOrder = (data) => async (dispatch) => {
   const response = await orderAPI.postOrder(data)
 
   if (response.status === 200) {
-    alert("Ваш заказ размещён")
+    dispatch(getOrderByID(response.data.data.id))
+    //dispatch(chequeActions.setOrder(response.data.data))
+  } else {
+    console.log("Some Error Occurred")
   }
+}
+export const getOrderByID = (id) => async (dispatch) => {
+  const data = await orderAPI.getOrderByID(id)
+  dispatch(chequeActions.setOrder(data))
 }
 
 export default chequeReducer;

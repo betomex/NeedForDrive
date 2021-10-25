@@ -9,14 +9,29 @@ import {CarStep} from "./stepTabs/carStep/CarStep";
 import {AddonStep} from "./stepTabs/addonStep/AddonStep";
 import {InTotalStep} from "./stepTabs/inTotalStep/InTotalStep";
 import {ConfirmOrder} from "./components/ConfirmOrder";
+import {useHistory, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {getOrderByID} from "../../redux/chequeReducer";
 
 export const OrderPage = () => {
+  const urlParams = useParams()
+  const history = useHistory()
+
   const [currentStep, setCurrentStep] = useState(0)
   const [isMobile, setIsMobile] = useState(true)
   const [isTablet, setIsTablet] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  const myOrder = useSelector(state => state.cheque.order)
+
   const pageSize = Grid.useBreakpoint()
+  const dispatch = useDispatch()
+
+  console.log(myOrder)
+
+  useEffect(() => {
+    dispatch(getOrderByID(urlParams.orderID))
+  }, [])
 
   useEffect(() => {
     if (pageSize.sm) {
@@ -31,6 +46,13 @@ export const OrderPage = () => {
     }
   }, [pageSize])
 
+  useEffect(() => {
+    if (myOrder !== null) {
+      history.push(`/orderPage/${myOrder?.id}`)
+      setCurrentStep(3)
+    }
+  }, [myOrder])
+
   const updateCurrentStep = (step) => {
     setCurrentStep(step)
   }
@@ -39,22 +61,25 @@ export const OrderPage = () => {
     <SideMenu/>
     <Layout>
       <Header/>
-      <Steps
-        current={currentStep}
-        responsive
-        className={"orderPageStepper"}
-      >
-        <Steps.Step title="Местоположение"/>
-        <Steps.Step title="Модель"/>
-        <Steps.Step title="Дополнительно"/>
-        <Steps.Step title="Итого"/>
-      </Steps>
+      {!!urlParams.orderID
+        ? <p className={"orderNumber"}>Заказ номер {urlParams.orderID}</p>
+        : <Steps
+          current={currentStep}
+          responsive
+          className={"orderPageStepper"}
+        >
+          <Steps.Step title="Местоположение"/>
+          <Steps.Step title="Модель"/>
+          <Steps.Step title="Дополнительно"/>
+          <Steps.Step title="Итого"/>
+        </Steps>
+      }
       <Layout>
         <Layout.Content className={"orderPageContent"}>
           {currentStep === 0 && <LocationStep/>}
           {currentStep === 1 && <CarStep/>}
           {currentStep === 2 && <AddonStep isMobile={isMobile}/>}
-          {currentStep === 3 && <InTotalStep/>}
+          {currentStep === 3 && <InTotalStep urlParams={urlParams}/>}
         </Layout.Content>
         {!isMobile &&
         <Layout.Sider
@@ -65,6 +90,7 @@ export const OrderPage = () => {
             currentStep={currentStep}
             updateCurrentStep={updateCurrentStep}
             setIsModalOpen={setIsModalOpen}
+            urlParams={urlParams}
           />
         </Layout.Sider>
         }
@@ -74,6 +100,7 @@ export const OrderPage = () => {
         currentStep={currentStep}
         updateCurrentStep={updateCurrentStep}
         setIsModalOpen={setIsModalOpen}
+        urlParams={urlParams}
       />}
     </Layout>
     {isModalOpen && <ConfirmOrder setIsModalOpen={setIsModalOpen}/>}

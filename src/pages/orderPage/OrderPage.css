@@ -44,12 +44,27 @@
     margin-bottom: 15px;
 }
 
+.orderNumber {
+    padding: 10px 155px 10px 200px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #121212;
+}
+
 @media (max-width: 1440px) {
     .orderPageStepper {
         padding: 10px 115px 10px 160px;
     }
     .orderPageContent {
         padding-left: 160px;
+    }
+    .orderNumber {
+        padding: 10px 115px 10px 160px;
     }
 }
 
@@ -59,6 +74,9 @@
     }
     .orderPageContent {
         padding-left: 125px;
+    }
+    .orderNumber {
+        padding: 10px 80px 10px 125px;
     }
 }
 
@@ -74,5 +92,8 @@
     }
     .orderPageContent {
         padding-left: 20px;
+    }
+    .orderNumber {
+        padding: 10px 20px 10px 20px;
     }
 }

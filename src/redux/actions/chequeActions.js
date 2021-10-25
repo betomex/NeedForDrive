@@ -8,4 +8,5 @@ export const chequeActions = {
   updateChequeIsFullTank: (price) => ({type: "CHEQUE/TOGGLE_TANK", payload: price}),
   updateChequeIsNeedChildChair: (price) => ({type: "CHEQUE/TOGGLE_CHILD_CHAIR", payload: price}),
   updateChequeIsRightWheel: (price) => ({type: "CHEQUE/TOGGLE_RIGHT_WHEEL", payload: price}),
+  setOrder: (order) => ({type: "CHEQUE/SET_ORDER", payload: order}),
 }

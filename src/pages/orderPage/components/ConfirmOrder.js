@@ -34,6 +34,7 @@ export const ConfirmOrder = (props) => {
       isRightWheel: isRightWheel
     }
     dispatch(postOrder(data))
+    setIsModalOpen(false);
   }
 
   return <>
