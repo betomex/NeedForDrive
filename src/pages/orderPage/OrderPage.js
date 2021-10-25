@@ -23,11 +23,10 @@ export const OrderPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const myOrder = useSelector(state => state.cheque.order)
+  const cheque = useSelector(state => state.cheque.chequeData)
 
   const pageSize = Grid.useBreakpoint()
   const dispatch = useDispatch()
-
-  console.log(myOrder)
 
   useEffect(() => {
     dispatch(getOrderByID(urlParams.orderID))
@@ -53,8 +52,14 @@ export const OrderPage = () => {
     }
   }, [myOrder])
 
-  const updateCurrentStep = (step) => {
-    setCurrentStep(step)
+  const stepsOnChangeHandler = (step) => {
+    if ((step <= currentStep) ||
+      (step === 1 && cheque.city && cheque.address) ||
+      (step === 2 && cheque.car) ||
+      (step === 3 && cheque.color && cheque.date && cheque.tariff)
+    ) {
+      setCurrentStep(step)
+    }
   }
 
   return <Layout className={"layout"}>
@@ -67,6 +72,7 @@ export const OrderPage = () => {
           current={currentStep}
           responsive
           className={"orderPageStepper"}
+          onChange={stepsOnChangeHandler}
         >
           <Steps.Step title="Местоположение"/>
           <Steps.Step title="Модель"/>
@@ -88,7 +94,7 @@ export const OrderPage = () => {
         >
           <Cheque
             currentStep={currentStep}
-            updateCurrentStep={updateCurrentStep}
+            updateCurrentStep={setCurrentStep}
             setIsModalOpen={setIsModalOpen}
             urlParams={urlParams}
           />
@@ -98,7 +104,7 @@ export const OrderPage = () => {
       {isMobile &&
       <Cheque
         currentStep={currentStep}
-        updateCurrentStep={updateCurrentStep}
+        updateCurrentStep={setCurrentStep}
         setIsModalOpen={setIsModalOpen}
         urlParams={urlParams}
       />}

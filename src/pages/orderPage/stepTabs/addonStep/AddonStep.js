@@ -19,13 +19,15 @@ export const AddonStep = (props) => {
 
   const chequeData = useSelector(state => state.cheque.chequeData)
   const tariffs = useSelector(state => state.orderPageAddons.tariffs)
-  const {car} = chequeData
+  const {car, isFullTank, isNeedChildChair, isRightWheel} = chequeData
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getTariff())
   }, [])
+
+  console.log(isFullTank, isNeedChildChair, isRightWheel)
 
   return <div>
     <p className={"pickerTitle"}>Цвет</p>
@@ -67,30 +69,31 @@ export const AddonStep = (props) => {
     </Radio.Group>
 
     <p className={"pickerTitle"}>Доп услуги</p>
-    <Checkbox.Group>
-      <Space direction={"vertical"}>
-        <Checkbox
-          value={1}
-          onChange={(e) => {
-            const price = e.target.checked ? fullTankPrice : 0
-            dispatch(updateChequeIsFullTank(price))
-          }}
-        >Полный бак, {fullTankPrice}р</Checkbox>
-        <Checkbox
-          value={2}
-          onChange={(e) => {
-            const price = e.target.checked ? childChairPrice : 0
-            dispatch(updateChequeIsNeedChildChair(price))
-          }}
-        >Детское кресло, {childChairPrice}р</Checkbox>
-        <Checkbox
-          value={3}
-          onChange={(e) => {
-            const price = e.target.checked ? rightWheelPrice : 0
-            dispatch(updateChequeIsRightWheel(price))
-          }}
-        >Правый руль, {rightWheelPrice}р</Checkbox>
-      </Space>
-    </Checkbox.Group>
+    <Space direction={"vertical"}>
+      <Checkbox
+        value={1}
+        checked={isFullTank}
+        onChange={(e) => {
+          const price = e.target.checked ? fullTankPrice : 0
+          dispatch(updateChequeIsFullTank(price))
+        }}
+      >Полный бак, {fullTankPrice}р</Checkbox>
+      <Checkbox
+        value={2}
+        checked={isNeedChildChair}
+        onChange={(e) => {
+          const price = e.target.checked ? childChairPrice : 0
+          dispatch(updateChequeIsNeedChildChair(price))
+        }}
+      >Детское кресло, {childChairPrice}р</Checkbox>
+      <Checkbox
+        value={3}
+        checked={isRightWheel}
+        onChange={(e) => {
+          const price = e.target.checked ? rightWheelPrice : 0
+          dispatch(updateChequeIsRightWheel(price))
+        }}
+      >Правый руль, {rightWheelPrice}р</Checkbox>
+    </Space>
   </div>
 }
