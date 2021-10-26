@@ -16,10 +16,10 @@ export const InTotalStep = () => {
 
   return <div className={"totalContainer"}>
     <div>
-      {myOrder.orderStatusId.name === "Новые" &&
+      {myOrder?.orderStatusId.name === "Новые" &&
       <p className={"confirmed"}>Ваш заказ подтверждён</p>
       }
-      {myOrder.orderStatusId.name === "Отмененые" &&
+      {myOrder?.orderStatusId.name === "Отмененые" &&
       <p className={"confirmed"}>Ваш заказ отменён</p>
       }
       <p className={"totalCar"}>{car?.name}</p>
