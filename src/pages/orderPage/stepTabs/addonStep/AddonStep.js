@@ -27,8 +27,6 @@ export const AddonStep = (props) => {
     dispatch(getTariff())
   }, [])
 
-  console.log(isFullTank, isNeedChildChair, isRightWheel)
-
   return <div>
     <p className={"pickerTitle"}>Цвет</p>
     <Radio.Group>

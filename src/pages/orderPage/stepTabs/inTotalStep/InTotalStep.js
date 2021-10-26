@@ -1,9 +1,7 @@
 import './InTotalStep.css'
 import {useSelector} from "react-redux";
 
-export const InTotalStep = (props) => {
-  const {urlParams} = props
-
+export const InTotalStep = () => {
   const chequeData = useSelector(state => state.cheque.chequeData)
   const myOrder = useSelector(state => state.cheque.order)
   const {car, date} = chequeData
@@ -18,8 +16,11 @@ export const InTotalStep = (props) => {
 
   return <div className={"totalContainer"}>
     <div>
-      {!!urlParams.orderID &&
+      {myOrder.orderStatusId.name === "Новые" &&
       <p className={"confirmed"}>Ваш заказ подтверждён</p>
+      }
+      {myOrder.orderStatusId.name === "Отмененые" &&
+      <p className={"confirmed"}>Ваш заказ отменён</p>
       }
       <p className={"totalCar"}>{car?.name}</p>
       <div className={"totalCarNumber"}>

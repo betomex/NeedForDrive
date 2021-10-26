@@ -16,17 +16,17 @@ import {getOrderByID} from "../../redux/chequeReducer";
 export const OrderPage = () => {
   const urlParams = useParams()
   const history = useHistory()
+  const pageSize = Grid.useBreakpoint()
+  const dispatch = useDispatch()
 
   const [currentStep, setCurrentStep] = useState(0)
+  const [lastActualStep, setLastActualStep] = useState(0)
   const [isMobile, setIsMobile] = useState(true)
   const [isTablet, setIsTablet] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const myOrder = useSelector(state => state.cheque.order)
   const cheque = useSelector(state => state.cheque.chequeData)
-
-  const pageSize = Grid.useBreakpoint()
-  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getOrderByID(urlParams.orderID))
@@ -46,19 +46,20 @@ export const OrderPage = () => {
   }, [pageSize])
 
   useEffect(() => {
-    if (myOrder !== null) {
+    if (myOrder) {
       history.push(`/orderPage/${myOrder?.id}`)
       setCurrentStep(3)
+      setLastActualStep(3)
     }
   }, [myOrder])
 
   const stepsOnChangeHandler = (step) => {
-    if ((step <= currentStep) ||
-      (step === 1 && cheque.city && cheque.address) ||
-      (step === 2 && cheque.car) ||
-      (step === 3 && cheque.color && cheque.date && cheque.tariff)
-    ) {
+    if (step <= currentStep) {
       setCurrentStep(step)
+    } else if ((step === 1 && cheque.city && cheque.address) ||
+      (step === 2 && cheque.car) ||
+      (step === 3 && cheque.color && cheque.date && cheque.tariff)) {
+      setLastActualStep((step))
     }
   }
 
@@ -85,7 +86,7 @@ export const OrderPage = () => {
           {currentStep === 0 && <LocationStep/>}
           {currentStep === 1 && <CarStep/>}
           {currentStep === 2 && <AddonStep isMobile={isMobile}/>}
-          {currentStep === 3 && <InTotalStep urlParams={urlParams}/>}
+          {currentStep === 3 && <InTotalStep/>}
         </Layout.Content>
         {!isMobile &&
         <Layout.Sider
@@ -94,9 +95,10 @@ export const OrderPage = () => {
         >
           <Cheque
             currentStep={currentStep}
+            lastActualStep={lastActualStep}
             updateCurrentStep={setCurrentStep}
+            setLastActualStep={setLastActualStep}
             setIsModalOpen={setIsModalOpen}
-            urlParams={urlParams}
           />
         </Layout.Sider>
         }
@@ -104,9 +106,10 @@ export const OrderPage = () => {
       {isMobile &&
       <Cheque
         currentStep={currentStep}
+        lastActualStep={lastActualStep}
         updateCurrentStep={setCurrentStep}
+        setLastActualStep={setLastActualStep}
         setIsModalOpen={setIsModalOpen}
-        urlParams={urlParams}
       />}
     </Layout>
     {isModalOpen && <ConfirmOrder setIsModalOpen={setIsModalOpen}/>}

@@ -1,5 +1,7 @@
-export const dateFormat = (date, tempTimeDif = null) => {
-  if (!tempTimeDif) tempTimeDif = date[1].toDate().getTime() - date[0].toDate().getTime()
+export const dateFormat = (date, timeDif = null) => {
+  let tempTimeDif = date[1]?.toDate().getTime() - date[0]?.toDate().getTime()
+  if (timeDif) tempTimeDif = timeDif
+
   const tempTimes = {
     d: Math.round(tempTimeDif / 1000 / 60 / 60 / 24),
     h: Math.round(tempTimeDif / 1000 / 60 / 60 % 24),

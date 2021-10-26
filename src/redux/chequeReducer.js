@@ -19,20 +19,12 @@ const initialState = {
     childChairPrice: 0,
     rightWheelPrice: 0,
   },
-  order: null
+  order: null,
+  orderForRequest: null
 }
 
 const chequeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHEQUE/UPDATE_PRICE": {
-      return {
-        ...state,
-        chequeData: {
-          ...state.chequeData,
-          price: state.chequeData.price + action.payload
-        },
-      }
-    }
     case "CHEQUE/UPDATE_CHEQUEPOINT": {
       return {
         ...state,
@@ -128,14 +120,17 @@ const chequeReducer = (state = initialState, action) => {
         order: action.payload
       }
     }
+    case "CHEQUE/SET_ORDER_FOR_REQUEST": {
+      return {
+        ...state,
+        orderForRequest: action.payload
+      }
+    }
     default:
       return state;
   }
 }
 
-export const updateChequePrice = (price) => async (dispatch) => {
-  dispatch(chequeActions.updateChequePrice(price))
-}
 export const updateChequePoint = (city, address) => async (dispatch) => {
   dispatch(chequeActions.updateChequePoint(city, address))
 }
@@ -161,19 +156,29 @@ export const updateChequeIsRightWheel = (price) => async (dispatch) => {
   dispatch(chequeActions.updateChequeIsRightWheel(price))
 }
 
+export const getOrderByID = (id) => async (dispatch) => {
+  const data = await orderAPI.getOrderByID(id)
+  dispatch(chequeActions.setOrder(data))
+}
 export const postOrder = (data) => async (dispatch) => {
+  dispatch(chequeActions.setOrderForRequest(data))
+
   const response = await orderAPI.postOrder(data)
 
   if (response.status === 200) {
     dispatch(getOrderByID(response.data.data.id))
-    //dispatch(chequeActions.setOrder(response.data.data))
   } else {
-    console.log("Some Error Occurred")
+    alert("Some Error Occurred. Your order hasn't be processed")
   }
 }
-export const getOrderByID = (id) => async (dispatch) => {
-  const data = await orderAPI.getOrderByID(id)
-  dispatch(chequeActions.setOrder(data))
+export const putOrder = (data) => async (dispatch) => {
+  const response = await orderAPI.putOrder(data)
+
+  if (response.status === 200) {
+    dispatch(getOrderByID(response.data.data.id))
+  } else {
+    alert("Some Error Occurred. Your order hasn't be cancelled")
+  }
 }
 
 export default chequeReducer;

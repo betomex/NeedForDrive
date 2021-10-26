@@ -35,24 +35,6 @@ export const MyMap = (props) => {
     myPanTo(coords)
   }, [coords])
 
-  /*useEffect(() => {
-    const names = []
-    const pointsNames = points.map(point => {
-      names.push(point.address)
-      return point.cityId?.name + ", " + point.address
-    })
-    let tempPointsCoords = []
-
-    for (let i = 0; i < pointsNames.length; i++) {
-      ymaps?.geocode(pointsNames[i]).then(r => {
-        const coords = r.geoObjects.get(0).geometry.getCoordinates()
-        tempPointsCoords.push({coordinates: coords, name: names[i]})
-      })
-    }
-
-    setPointsCoords(tempPointsCoords)
-  }, [updateStatus])*/
-
   useEffect(() => {
     let tempPointsCoords = []
 

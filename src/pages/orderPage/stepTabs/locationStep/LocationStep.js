@@ -5,6 +5,7 @@ import {MyMap} from "./MyMap";
 import {useDispatch, useSelector} from "react-redux";
 import {updateChequePoint} from "../../../../redux/chequeReducer";
 import {getLocations, getPoints} from "../../../../redux/locationReducer";
+import {getOrderStatuses} from "../../../../redux/infoReducer";
 
 export const LocationStep = () => {
   const [pointOptions, setPointOptions] = useState([])
@@ -18,6 +19,7 @@ export const LocationStep = () => {
   useEffect(() => {
     dispatch(getLocations())
     dispatch(getPoints())
+    dispatch(getOrderStatuses())
   }, [])
 
   useEffect(() => {
