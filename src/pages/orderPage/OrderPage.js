@@ -54,11 +54,22 @@ export const OrderPage = () => {
   }, [myOrder])
 
   const stepsOnChangeHandler = (step) => {
-    if (step <= currentStep) {
-      setCurrentStep(step)
-    } else if ((step === 1 && cheque.city && cheque.address) ||
+    if (
+      (step <= currentStep) ||
+      (step === 1 && cheque.city && cheque.address) ||
       (step === 2 && cheque.car) ||
-      (step === 3 && cheque.color && cheque.date && cheque.tariff)) {
+      (step === 3 && cheque.color && cheque.date && cheque.tariff)
+    ) {
+      setCurrentStep(step)
+    }
+
+    if (
+      (step === lastActualStep + 1) && (
+        (lastActualStep === 0 && cheque.city && cheque.address) ||
+        (lastActualStep === 1 && cheque.car) ||
+        (lastActualStep === 2 && cheque.color && cheque.date && cheque.tariff)
+      )
+    ) {
       setLastActualStep((step))
     }
   }
