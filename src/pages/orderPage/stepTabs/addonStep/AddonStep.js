@@ -19,7 +19,7 @@ export const AddonStep = (props) => {
 
   const chequeData = useSelector(state => state.cheque.chequeData)
   const tariffs = useSelector(state => state.orderPageAddons.tariffs)
-  const {car, isFullTank, isNeedChildChair, isRightWheel} = chequeData
+  const {car, color, date, tariff, isFullTank, isNeedChildChair, isRightWheel} = chequeData
 
   const dispatch = useDispatch()
 
@@ -29,18 +29,19 @@ export const AddonStep = (props) => {
 
   return <div>
     <p className={"pickerTitle"}>Цвет</p>
-    <Radio.Group>
-      {car?.colors.map((color, index) =>
-        <Radio
-          value={color}
-          key={index}
-          onClick={() => dispatch(updateChequeColor(color))}
-        >{color}</Radio>)}
-    </Radio.Group>
+    {car?.colors.map((colorOption, index) =>
+      <Radio
+        checked={color === colorOption}
+        value={colorOption}
+        key={index}
+        onClick={() => dispatch(updateChequeColor(colorOption))}
+      >{colorOption}</Radio>)
+    }
 
     <p className={"pickerTitle"}>Дата аренды</p>
     <ConfigProvider locale={locale}>
       <DatePicker.RangePicker
+        value={date}
         className={"dateTimePicker"}
         size={isMobile && "small"}
         showTime
@@ -52,19 +53,18 @@ export const AddonStep = (props) => {
     </ConfigProvider>
 
     <p className={"pickerTitle"}>Тариф</p>
-    <Radio.Group>
-      <Space direction="vertical">
-        {tariffs.map(tariff =>
-          <Radio
-            value={tariff.rateTypeId.name}
-            key={tariff.id}
-            onClick={() => dispatch(updateChequeTariff(tariff))}
-          >
-            {tariff.rateTypeId.name}, {tariff.price}₽/{tariff.rateTypeId.unit}
-          </Radio>
-        )}
-      </Space>
-    </Radio.Group>
+    <Space direction="vertical">
+      {tariffs.map(tariffOption =>
+        <Radio
+          checked={tariff.rateTypeId.name === tariffOption.rateTypeId.name}
+          value={tariffOption.rateTypeId.name}
+          key={tariffOption.id}
+          onClick={() => dispatch(updateChequeTariff(tariffOption))}
+        >
+          {tariffOption.rateTypeId.name}, {tariffOption.price}₽/{tariffOption.rateTypeId.unit}
+        </Radio>
+      )}
+    </Space>
 
     <p className={"pickerTitle"}>Доп услуги</p>
     <Space direction={"vertical"}>

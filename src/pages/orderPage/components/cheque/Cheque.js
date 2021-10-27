@@ -88,7 +88,7 @@ export const Cheque = (props) => {
 
       <ChequeOption
         title={"Длительность аренды"}
-        text={JSON.stringify(times) === "{}" ? "" : times?.d + "д. " + times?.h + "ч. " + times?.m + "м."}
+        text={!Object.keys(times).length ? "" : times?.d + "д. " + times?.h + "ч. " + times?.m + "м."}
         condition={!!times}
       />
 
