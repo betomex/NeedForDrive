@@ -56,7 +56,7 @@ export const AddonStep = (props) => {
     <Space direction="vertical">
       {tariffs.map(tariffOption =>
         <Radio
-          checked={tariff.rateTypeId.name === tariffOption.rateTypeId.name}
+          checked={tariff?.rateTypeId.name === tariffOption.rateTypeId.name}
           value={tariffOption.rateTypeId.name}
           key={tariffOption.id}
           onClick={() => dispatch(updateChequeTariff(tariffOption))}
