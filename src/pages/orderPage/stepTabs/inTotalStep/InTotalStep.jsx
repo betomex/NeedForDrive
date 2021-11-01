@@ -1,3 +1,4 @@
+import React from "react";
 import './InTotalStep.css'
 import {useSelector} from "react-redux";
 

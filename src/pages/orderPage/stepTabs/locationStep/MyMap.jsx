@@ -1,8 +1,10 @@
+import React from "react";
 import {Map, Placemark, YMaps} from "react-yandex-maps";
 import {useEffect, useRef, useState} from "react";
 import './MyMap.css'
 import {useDispatch} from "react-redux";
 import {updateChequePoint} from "../../../../redux/chequeReducer";
+/* eslint-disable react/prop-types */
 
 export const MyMap = (props) => {
   const {points, cityValue, pointValue} = props
@@ -16,7 +18,7 @@ export const MyMap = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!!cityValue?.name) {
+    if (cityValue?.name) {
       ymaps?.geocode(cityValue?.name).then(r => {
         setCoords(r.geoObjects.get(0).geometry.getCoordinates())
       })
@@ -24,7 +26,7 @@ export const MyMap = (props) => {
   }, [cityValue])
 
   useEffect(() => {
-    if (!!pointValue?.address) {
+    if (pointValue?.address) {
       ymaps?.geocode(pointValue?.address + ", " + cityValue?.name).then(r => {
         setCoords(r.geoObjects.get(0).geometry.getCoordinates())
       })
@@ -50,7 +52,7 @@ export const MyMap = (props) => {
   }, [updateStatus])
 
   const myPanTo = coordinates => {
-    if (!!pointValue?.address) {
+    if (pointValue?.address) {
       map.current?.setZoom(16, {duration: 2000})
     } else {
       map.current?.setZoom(11, {duration: 2000})

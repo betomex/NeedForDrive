@@ -1,3 +1,6 @@
+import React from "react";
+/* eslint-disable react/prop-types */
+
 export const CurrentStepButton = (props) => {
   const {currentStep, lastActualStep, updateCurrentStep, setLastActualStep, setIsModalOpen, isDisabled} = props
 

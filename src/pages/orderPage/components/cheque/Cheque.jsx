@@ -1,3 +1,4 @@
+import React from "react";
 import './Cheque.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
@@ -5,6 +6,7 @@ import {dateFormat} from "../../../../lib/utils";
 import {ChequeOption} from "./ChequeOption";
 import {CurrentStepButton} from "./CurrentStepButton";
 import {putOrder} from "../../../../redux/chequeReducer";
+/* eslint-disable react/prop-types */
 
 export const Cheque = (props) => {
   const {currentStep, lastActualStep, updateCurrentStep, setLastActualStep, setIsModalOpen} = props

@@ -1,3 +1,4 @@
+import React from "react";
 import {Grid, Layout, Steps} from 'antd';
 import {Header} from "../common/Header";
 import {SideMenu} from "../common/SideMenu";
@@ -78,7 +79,7 @@ export const OrderPage = () => {
     <SideMenu/>
     <Layout>
       <Header/>
-      {!!urlParams.orderID
+      {urlParams.orderID
         ? <p className={"orderNumber"}>Заказ номер {urlParams.orderID}</p>
         : <Steps
           current={currentStep}

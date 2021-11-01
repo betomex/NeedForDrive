@@ -2,6 +2,7 @@ import React from "react";
 import './ConfirmOrder.css'
 import {useDispatch, useSelector} from "react-redux";
 import {postOrder} from "../../../redux/chequeReducer";
+/* eslint-disable react/prop-types */
 
 export const ConfirmOrder = (props) => {
   const {setIsModalOpen} = props

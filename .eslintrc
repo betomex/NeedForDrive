@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb",
+  "plugins": ["react"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6
+  },
+  "rules": {
+    "react/forbid-prop-types": 0
+  }
+}

@@ -1,3 +1,4 @@
+import React from "react";
 import './AddonStep.css'
 import {Checkbox, ConfigProvider, DatePicker, Radio, Space} from "antd";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,6 +14,7 @@ import {
   updateChequeTariff
 } from "../../../../redux/chequeReducer";
 import {childChairPrice, fullTankPrice, rightWheelPrice} from "../../../../lib/constants";
+/* eslint-disable react/prop-types */
 
 export const AddonStep = (props) => {
   const {isMobile} = props

@@ -1,5 +1,7 @@
+import React from "react";
 import {Row} from "antd";
 import './ChequeOption.css'
+/* eslint-disable react/prop-types */
 
 export const ChequeOption = (props) => {
   const {title, text, condition} = props

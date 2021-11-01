@@ -1,3 +1,4 @@
+import React from "react";
 import {useEffect, useState} from "react";
 import {AutoComplete, Space} from "antd";
 import './LocationStep.css'
