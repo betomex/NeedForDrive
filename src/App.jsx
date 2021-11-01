@@ -6,7 +6,11 @@ import {OrderPage} from "./pages/orderPage/OrderPage";
 
 const App = () => {
   return <Switch>
-    <Route exact path="/" render={() => <Redirect to="/startPage"/>}/>
+    <Route
+      exact
+      path="/"
+      render={() => <Redirect to="/startPage"/>}
+    />
     <Route
       path="/startPage"
       render={() =>
@@ -14,7 +18,7 @@ const App = () => {
       }
     />
     <Route
-      path="/orderPage"
+      path="/orderPage/:orderID?"
       render={() =>
         <OrderPage/>
       }

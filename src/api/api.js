@@ -37,8 +37,21 @@ export const addonAPI = {
 }
 
 export const orderAPI = {
+  getOrderByID(id) {
+    return instance.get(`db/order/${id}`).then(r => r.data.data);
+  },
   postOrder(data) {
     const body = JSON.stringify(data)
     return instance.post(`db/order`, body);
-  }
+  },
+  putOrder(data) {
+    const body = JSON.stringify(data)
+    return instance.put(`db/order/${data.id}`, body);
+  },
+}
+
+export const infoAPI = {
+  getOrderStatuses() {
+    return instance.get(`db/orderStatus`).then(r => r.data.data);
+  },
 }
